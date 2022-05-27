@@ -1,29 +1,29 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { lastFmData } from "../../lib/types";
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { lastFmData } from '../../lib/types'
 
 const User = () => {
-  const router = useRouter();
-  const { user } = router.query;
-  const [lastFmData, setLastFmData] = useState<null | lastFmData>();
+  const router = useRouter()
+  const { user } = router.query
+  const [lastFmData, setLastFmData] = useState<null | lastFmData>()
 
   useEffect(() => {
     const getData = async () => {
-      const response = await fetch("/api/lastfm", {
-        method: "POST",
+      const response = await fetch('/api/lastfm', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: user,
         }),
-      });
-      const data = await response.json();
-      setLastFmData(data);
-    };
+      })
+      const data = await response.json()
+      setLastFmData(data)
+    }
 
-    getData();
-  }, [user]);
+    getData()
+  }, [user])
 
   return (
     <>
@@ -36,7 +36,7 @@ const User = () => {
 
       <p>User: {user}</p>
     </>
-  );
-};
+  )
+}
 
-export default User;
+export default User
