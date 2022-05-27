@@ -1,5 +1,6 @@
 import { lastFmData, LastFmResponse } from "../../lib/types";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getFullImage } from "../../lib/utils";
 
 type Data = {
   name: string;
@@ -19,11 +20,13 @@ export default function handler(
     if (username) {
       const response = await fetch(lastFmURL(username));
       const data: LastFmResponse = await response.json();
+      const image = getFullImage(data.recenttracks.track[0].image[0]["#text"]);
+
       const returnData: lastFmData = {
         artist: data.recenttracks.track[0].artist["#text"],
         album: data.recenttracks.track[0].album["#text"],
         track: data.recenttracks.track[0].name,
-        image: data.recenttracks.track[0].image[0]["#text"],
+        image: image,
         url: data.recenttracks.track[0].url,
       };
       //FIXME: Fix types
