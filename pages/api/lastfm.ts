@@ -26,7 +26,8 @@ export default function handler(
         image: data.recenttracks.track[0].image[0]["#text"],
         url: data.recenttracks.track[0].url,
       };
-      res.status(200).json(returnData);
+      //FIXME: Fix types
+      res.status(200).json(returnData as any);
     }
   };
 
