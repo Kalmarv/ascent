@@ -1,4 +1,4 @@
-import { lastFmData, LastFmResponse } from "./../types";
+import { lastFmData, LastFmResponse } from "../../lib/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { lastFmData } from "../types";
+import { lastFmData } from "../../lib/types";
 
 const User = () => {
   const router = useRouter();
