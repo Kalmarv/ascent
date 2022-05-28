@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import SongInfo from '../../components/songinfo'
 import { lastFmData } from '../../lib/types'
 import Scene from '../../scene/scene'
 
@@ -28,14 +29,7 @@ const User = () => {
 
   return (
     <>
-      {/* <h1>{lastFmData?.track}</h1>
-      <h2>{lastFmData?.artist}</h2>
-      <h2>{lastFmData?.album}</h2>
-      <a href={lastFmData?.url}>
-        <img className="m-16 w-1/2 rounded-lg" src={lastFmData?.image}></img>
-      </a>
-
-      <p>User: {user}</p> */}
+      {lastFmData && <SongInfo song={lastFmData} />}
       <Scene />
     </>
   )

@@ -1,19 +1,19 @@
 import { useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 
-function Box(props: any) {
-  const ref = useRef()
+const Box = (props: JSX.IntrinsicElements['mesh']) => {
+  const mesh = useRef<THREE.Mesh>(null!)
   return (
-    <mesh {...props} ref={ref}>
+    <mesh {...props} ref={mesh}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color={'hotpink'} />
     </mesh>
   )
 }
 
-function Scene() {
+const Scene = () => {
   return (
-    <Canvas>
+    <Canvas style={{ height: '100vh' }}>
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
