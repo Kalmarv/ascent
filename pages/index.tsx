@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
-const Home: NextPage = () => {
+const Home: NextPage = (): JSX.Element => {
   const router = useRouter()
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {

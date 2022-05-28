@@ -4,7 +4,7 @@ import SongInfo from '../../components/songinfo'
 import { lastFmData } from '../../lib/types'
 import Scene from '../../scene/scene'
 
-const User = () => {
+const User = (): JSX.Element => {
   const router = useRouter()
   const { user } = router.query
   const [lastFmData, setLastFmData] = useState<null | lastFmData>()
@@ -30,7 +30,7 @@ const User = () => {
   return (
     <>
       {lastFmData && <SongInfo song={lastFmData} />}
-      <Scene />
+      {lastFmData && <Scene song={lastFmData} />}
     </>
   )
 }
