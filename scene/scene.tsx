@@ -1,28 +1,15 @@
 import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
-import { lastFmSongProps } from '../types/types'
+import { Colors, lastFmSongProps } from '../types/types'
 import Album from './album'
 import { useEffect, useState } from 'react'
-// the @types package was not really working
-//@ts-ignore
-import extractColors from 'extract-colors'
-
-const getColors = async (imageURL: string) => {
-  const colorRes = await extractColors(imageURL, { crossOrigin: 'Anonymous' })
-
-  // if (colorRes.length === 1) {
-  //   const finalColors = await extractColors(imageURL, { crossOrigin: 'Anonymous', distance: 0 })
-  //   return finalColors
-  // } else {
-  return colorRes
-  // }
-}
+import { getColors } from '../lib/getColors'
 
 const Scene: React.FC<lastFmSongProps> = ({ song }) => {
-  const [songColors, setSongColors] = useState([])
+  const [songColors, setSongColors] = useState<Colors[]>([])
 
   useEffect(() => {
-    getColors(song.image).then((songColors) => console.log(songColors))
+    getColors(song.image).then((extractedColors) => setSongColors(extractedColors))
   }, [song.image])
 
   return (
