@@ -1,23 +1,10 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import SongInfo from '../../components/songinfo'
-import { lastFmData } from '../../lib/types'
+import { lastFmData } from '../../types/types'
 import Scene from '../../scene/scene'
 import useInterval from 'use-interval'
-
-const getLastFmData = async (user: string | string[] | undefined) => {
-  const response = await fetch('/api/lastfm', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      username: user,
-    }),
-  })
-  const lastFmResponse = await response.json()
-  return lastFmResponse
-}
+import { getLastFmData } from '../../lib/getLastFmData'
 
 const User = (): JSX.Element => {
   const router = useRouter()

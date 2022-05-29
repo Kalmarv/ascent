@@ -1,4 +1,4 @@
-import { lastFmData, lastFmSongProps } from '../lib/types'
+import { lastFmData, lastFmSongProps } from '../types/types'
 
 const SongInfo: React.FC<lastFmSongProps> = ({ song }): JSX.Element => {
   //   const { track } = songData

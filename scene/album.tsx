@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { TextureLoader } from 'three'
 import { useLoader } from '@react-three/fiber'
-import { AlbumProps } from '../lib/types'
+import { AlbumProps } from '../types/types'
 
 const Album = ({ cover, ...props }: AlbumProps) => {
   const mesh = useRef<THREE.Mesh>(null!)

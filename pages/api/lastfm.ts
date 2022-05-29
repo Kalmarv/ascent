@@ -1,6 +1,6 @@
-import { lastFmData, LastFmResponse } from '../../lib/types'
+import { lastFmData, LastFmResponse } from '../../types/types'
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { getFullImage } from '../../lib/utils'
+import { getFullImage } from '../../lib/getFullImage'
 
 type Data = {
   name: string
