@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Data>)
     if (username) {
       const response = await fetch(lastFmURL(username))
       const data: LastFmResponse = await response.json()
-      const image = getFullImage(data.recenttracks.track[0].image[0]['#text'])
+      const image = await getFullImage(data.recenttracks.track[0].image[0]['#text'])
 
       const returnData: lastFmData = {
         artist: data.recenttracks.track[0].artist['#text'],

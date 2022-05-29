@@ -13,7 +13,12 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   }, [song.image])
 
   return (
-    <Canvas style={{ height: '100vh' }}>
+    <Canvas
+      style={{
+        height: '100vh',
+        background: `linear-gradient(to bottom right, ${songColors[0]?.hex}, ${songColors[1]?.hex})`,
+      }}
+    >
       <ambientLight intensity={0.5} />
       <pointLight position={[-10, -10, -10]} />
       <Album cover={song.image} scale={[1, 1, 0.05]} />

@@ -23,8 +23,8 @@ const User = (): JSX.Element => {
     <>
       {lastFmData && (
         <>
-          <SongInfo song={lastFmData} />
           <Scene song={lastFmData} />
+          <SongInfo song={lastFmData} />
         </>
       )}
     </>
