@@ -1,3 +1,5 @@
+import { MeshProps } from '@react-three/fiber'
+
 export interface LastFmResponse {
   recenttracks: Recenttracks
 }
@@ -61,4 +63,8 @@ export interface lastFmData {
 
 export interface lastFmSongProps {
   song: lastFmData
+}
+
+export interface AlbumProps extends MeshProps {
+  cover: string
 }

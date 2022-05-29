@@ -9,7 +9,6 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
       <ambientLight intensity={0.5} />
       <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
       <pointLight position={[-10, -10, -10]} />
-      {/* FIXME: types */}
       <Album cover={song.image} position={[0, 0, 0]} />
       <OrbitControls />
       <Environment preset={'dawn'} />

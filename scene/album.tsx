@@ -1,11 +1,7 @@
 import { useRef } from 'react'
 import { TextureLoader } from 'three'
 import { useLoader } from '@react-three/fiber'
-
-interface AlbumProps {
-  cover: string
-  props: JSX.IntrinsicElements['mesh']
-}
+import { AlbumProps } from '../lib/types'
 
 const Album = ({ cover, ...props }: AlbumProps) => {
   const mesh = useRef<THREE.Mesh>(null!)
