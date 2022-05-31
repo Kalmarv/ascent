@@ -2,9 +2,10 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import SongInfo from '../../components/songinfo'
 import { lastFmData } from '../../types/types'
-import Scene from '../../scene/scene'
 import useInterval from 'use-interval'
 import { getLastFmData } from '../../lib/getLastFmData'
+import dynamic from 'next/dynamic'
+const Scene = dynamic(() => import('../../scene/scene'), { ssr: false })
 
 const User = (): JSX.Element => {
   const router = useRouter()
