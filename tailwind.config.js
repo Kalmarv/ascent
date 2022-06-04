@@ -3,5 +3,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('flowbite/plugin')],
+  daisyui: {
+    themes: ['light'],
+  },
+  plugins: [require('daisyui')],
 }

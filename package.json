@@ -11,9 +11,8 @@
   "dependencies": {
     "@react-three/drei": "^9.11.3",
     "@react-three/fiber": "^8.0.19",
+    "daisyui": "^2.15.2",
     "extract-colors": "^1.1.21",
-    "flowbite": "^1.4.7",
-    "flowbite-react": "^0.0.25",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
