@@ -5,7 +5,8 @@ import { lastFmData } from '../../types/types'
 import useInterval from 'use-interval'
 import { getLastFmData } from '../../lib/getLastFmData'
 import dynamic from 'next/dynamic'
-const Scene = dynamic(() => import('../../scene/scene'), { ssr: false })
+import Loading from '../../components/loading'
+const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {
   const router = useRouter()

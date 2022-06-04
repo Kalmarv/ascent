@@ -16,7 +16,8 @@ const Home: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <form onSubmit={(event) => handleSubmit(event)}>
+      <h1 className="">{"What's your Last.fm UserName?"}</h1>
+      <form className="" onSubmit={(event) => handleSubmit(event)}>
         <input type="text" name="userName"></input>
       </form>
     </>
