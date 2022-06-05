@@ -17,6 +17,6 @@
     "incremental": false,
     "noImplicitAny": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/scene/background.jsx"],
   "exclude": ["node_modules"]
 }
