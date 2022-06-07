@@ -1,4 +1,14 @@
 import { MeshProps } from '@react-three/fiber'
+import { CustomMaterial } from '../scene/shaders/bgShader'
+import { MaterialNode } from '@react-three/fiber'
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      customMaterial: MaterialNode<any, typeof CustomMaterial>
+    }
+  }
+}
 
 export interface LastFmResponse {
   recenttracks: Recenttracks
@@ -100,4 +110,8 @@ export interface Colors {
    * @example 0.2156862
    */
   saturation: number
+}
+
+export interface BackgroundProps extends MeshProps {
+  colors: Colors[]
 }

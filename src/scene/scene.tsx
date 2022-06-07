@@ -5,12 +5,13 @@ import Album from './album'
 import { useEffect, useState } from 'react'
 import { getColors } from '../lib/getColors'
 import Background from './background'
+import { expandCols } from '../lib/expandColors'
 
 const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   const [songColors, setSongColors] = useState<Colors[]>([])
 
   useEffect(() => {
-    getColors(song.image).then((extractedColors) => setSongColors(extractedColors))
+    getColors(song.image).then((extractedColors) => setSongColors(expandCols(extractedColors, 4)))
   }, [song.image])
 
   return (
