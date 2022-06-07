@@ -13,6 +13,7 @@
     "@react-three/fiber": "^8.0.19",
     "daisyui": "^2.15.2",
     "extract-colors": "^1.1.21",
+    "leva": "^0.9.27",
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
