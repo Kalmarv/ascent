@@ -28,7 +28,6 @@ const Background = (colors: BackgroundProps) => {
   const gRef = useRef<BoxBufferGeometry>(null!)
 
   useFrame((state, delta) => {
-    // Update material
     if (mRef.current) {
       mRef.current.u_time = state.clock.getElapsedTime()
     }
