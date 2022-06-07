@@ -23,7 +23,7 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
       <ambientLight intensity={0.5} />
       <pointLight position={[-10, -10, -10]} />
       <Album cover={song.image} scale={[1, 1, 0.05]} />
-      <Background />
+      <Background colors={songColors} />
       <OrbitControls />
       <Environment preset={'dawn'} />
     </Canvas>

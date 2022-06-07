@@ -1,22 +1,35 @@
-import { useFrame } from '@react-three/fiber'
+import { MeshProps, useFrame } from '@react-three/fiber'
 import { CustomMaterial } from './shaders/bgShader'
 import { useControls } from 'leva'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
+import { Colors } from '../types/types'
 
-const Background = () => {
+interface BackgroundProps extends MeshProps {
+  colors: Colors[]
+}
+
+const Background = (colors: BackgroundProps) => {
+  const albumColors = useMemo(() => {
+    const filterHex = [...colors.colors].map((color) => {
+      return color.hex
+    })
+    console.log(filterHex)
+    return filterHex
+  }, [colors.colors])
+
   const { col1, col2, col3, col4, lacunarity, gain, speed_mult } = useControls({
     col1: {
-      value: '#ff0000',
+      value: albumColors[0],
     },
     col2: {
-      value: '#00ff00',
+      value: albumColors[1],
     },
     col3: {
-      value: '#0000ff',
+      value: albumColors[2],
     },
     col4: {
-      value: '#ffffff',
+      value: albumColors[3],
     },
     lacunarity: {
       value: 0.5,
@@ -33,7 +46,9 @@ const Background = () => {
 
   useFrame((state, delta) => {
     // Update material
-    mRef.current.u_time = state.clock.getElapsedTime()
+    if (mRef.current) {
+      mRef.current.u_time = state.clock.getElapsedTime()
+    }
   })
 
   return (
