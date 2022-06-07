@@ -6,6 +6,7 @@ import useInterval from 'use-interval'
 import { getLastFmData } from '../../lib/getLastFmData'
 import dynamic from 'next/dynamic'
 import Loading from '../../components/loading'
+import { Leva } from 'leva'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {
@@ -25,6 +26,7 @@ const User = (): JSX.Element => {
     <>
       {lastFmData && (
         <>
+          <Leva />
           <Scene song={lastFmData} />
           <SongInfo song={lastFmData} />
         </>

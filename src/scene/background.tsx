@@ -1,4 +1,4 @@
-import { extend, MaterialNode, useFrame } from '@react-three/fiber'
+import { extend, useFrame } from '@react-three/fiber'
 import { CustomMaterial } from './shaders/bgShader'
 import { useControls } from 'leva'
 import { useRef } from 'react'
@@ -21,7 +21,7 @@ const Plain = () => {
       step: 0.01,
     },
   })
-  const mRef = useRef()
+  const mRef = useRef<any>()
   const gRef = useRef<PlaneBufferGeometry>(null!)
 
   useFrame((state, delta) => {
