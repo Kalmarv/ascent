@@ -1,43 +1,47 @@
+import { shaderMaterial } from '@react-three/drei'
 import * as THREE from 'three'
-import { extend } from '@react-three/fiber'
 
-const vertexShader = `
-varying vec2 vUv;
-void main() {
-  vUv = uv;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-}
-`
-const fragmentShader = `
-uniform float time;
-uniform vec3 color;
-varying vec2 vUv;
-void main() {
-  gl_FragColor.rgba = vec4(color.xyz, 1.0);
-}
-`
+export const CustomMaterial = shaderMaterial(
+  // Uniforms
+  {
+    uFrequency: new THREE.Vector2(10, 5),
+    uTime: 0,
+  },
+  // Vertex Shader
+  // "uv" is accessible globally inside the Vertex Shader
+  `
+  uniform vec2 uFrequency;
+  uniform float uTime;
 
-class WaveMaterial extends THREE.ShaderMaterial {
-  static key: number
-  constructor() {
-    super({
-      uniforms: {
-        time: { value: 0 },
-        color: { value: new THREE.Color('hotpink') },
-      },
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
-    })
+  varying float vModelPosition;
+  varying vec2 vUv;
+
+  void main()
+  {
+      vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+      modelPosition.z += sin(modelPosition.x * uFrequency.x + -uTime * 2.0) * 0.1;
+      modelPosition.z += sin(modelPosition.y * uFrequency.y + -uTime * 2.0) * 0.1;
+
+      vec4 viewPosition = viewMatrix * modelPosition;
+      vec4 projectedPosition = projectionMatrix * viewPosition;
+  
+      gl_Position = projectedPosition;
+
+      vModelPosition = modelPosition.z;
+      vUv = uv;
   }
+  `,
+  // Fragment Shader
+  `
+      precision mediump float;
 
-  set time(v) { this.uniforms.time.value = v } // prettier-ignore
-  get time() { return this.uniforms.time.value } // prettier-ignore
-  get color() { return this.uniforms.color.value } // prettier-ignore
-}
+      varying float vModelPosition;
+      varying vec2 vUv;
 
-// This is the 🔑 that HMR will renew if this file is edited
-// It works for THREE.ShaderMaterial as well as for drei/shaderMaterial
-WaveMaterial.key = 12378291732
-// Make the material available in JSX as <waveMaterial />
-extend({ WaveMaterial })
-export { WaveMaterial }
+      void main() {
+        gl_FragColor = vModelPosition * vec4(0.5, 1.0, 0.0, 1.0) / 0.8 + 0.75;
+
+        gl_FragColor = vec4(vUv, 1.0, 1.0);
+      }
+  `
+)

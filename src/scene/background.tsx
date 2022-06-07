@@ -1,64 +1,44 @@
-// import { useFrame, useThree } from '@react-three/fiber'
-// import { useRef } from 'react'
-// import { BackSide, Color, Mesh } from 'three'
-import { useThree, useFrame } from '@react-three/fiber'
+import { extend, MaterialNode, useFrame } from '@react-three/fiber'
+import { CustomMaterial } from './shaders/bgShader'
 import { useControls } from 'leva'
 import { useRef } from 'react'
+import { DoubleSide, PlaneBufferGeometry, Vector2 } from 'three'
 
-// const Background = () => {
-//   const mesh = useRef<THREE.Mesh>(null!)
-//   const { clock } = useThree()
-//   const shaderValues = useControls({ time: { value: 0.0 } })
+extend({ CustomMaterial })
 
-//   const uniforms = {
-//     time: { value: 0.0 },
-//     // color: { value: new Color(1.0, 0.0, 1.0) },
-//   }
+const Plain = () => {
+  const { x, y } = useControls({
+    x: {
+      value: 15,
+      min: 0,
+      max: 20,
+      step: 0.01,
+    },
+    y: {
+      value: 10,
+      min: 0,
+      max: 20,
+      step: 0.01,
+    },
+  })
+  const mRef = useRef()
+  const gRef = useRef<PlaneBufferGeometry>(null!)
 
-//   useFrame(() => {
-//     if (mesh.current) {
-//       uniforms.time.value = clock.getElapsedTime()
-//     }
-//   })
-
-//   const { time } = useControls({
-//     time: { value: 0.3, min: 0, max: 200 },
-//   })
-
-//   return (
-//     <mesh ref={mesh}>
-//       <boxGeometry args={[10, 10, 10]} />
-//       <shaderMaterial
-//         uniforms={{time: time}}
-//         side={BackSide}
-//         vertexShader={vertexShader}
-//         fragmentShader={fragmentShader}
-//       ></shaderMaterial>
-//     </mesh>
-//   )
-// }
-
-// export default Background
-
-import { WaveMaterial } from './shaders/bgShader'
-
-const Background = () => {
-  const ref = useRef()
-
-  const { color } = useControls('Colors', {
-    color: '#7d7bff',
+  useFrame((state, delta) => {
+    // Update material
+    mRef.current.uTime = state.clock.getElapsedTime()
   })
 
-  const { width, height } = useThree((state) => state.viewport)
-  useFrame((state, delta) => (ref.current.time += delta))
-
   return (
-    <mesh scale={[width, height, 1]}>
-      <planeGeometry args={[1, 1, 16, 16]} />
-      {/* We use the materials module 🔑 to allow HMR replace */}
-      <waveMaterial ref={ref} key={WaveMaterial.key} color={color} />
+    <mesh>
+      <planeBufferGeometry ref={gRef} args={[1, 1, 32, 32]} />
+      <customMaterial side={DoubleSide} uFrequency={new Vector2(x, y)} ref={mRef} key={CustomMaterial.key} />
     </mesh>
   )
+}
+
+const Background = () => {
+  return <Plain />
 }
 
 export default Background
