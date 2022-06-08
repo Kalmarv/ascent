@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment, OrbitControls } from '@react-three/drei'
 import { Colors, lastFmSongProps } from '../types/types'
 import Album from './album'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { getColors } from '../lib/getColors'
 import Background from './background'
 import { expandCols } from '../lib/expandColors'
@@ -13,6 +13,12 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   useEffect(() => {
     getColors(song.image).then((extractedColors) => setSongColors(expandCols(extractedColors, 4)))
   }, [song.image])
+
+  // sometimes the lastfm cdn returns a blank image
+  // this stops it from recreating the album with a blank image
+  useMemo(() => {
+    return song
+  }, [song])
 
   return (
     <Canvas

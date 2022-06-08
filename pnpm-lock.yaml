@@ -12,6 +12,7 @@ specifiers:
   eslint: 8.16.0
   eslint-config-next: 12.1.6
   extract-colors: ^1.1.21
+  jotai: ^1.7.1
   leva: ^0.9.27
   next: 12.1.6
   postcss: ^8.4.14
@@ -27,6 +28,7 @@ dependencies:
   '@react-three/fiber': 8.0.19_fozlczatik2xxzyg34dm3762um
   daisyui: 2.15.2_ugi4xkrfysqkt4c4y6hkyfj344
   extract-colors: 1.1.21
+  jotai: 1.7.1_react@18.1.0
   leva: 0.9.27_ef5jwxihqo6n7gxfmzogljlgcm
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   react: 18.1.0
@@ -1904,6 +1906,43 @@ packages:
   /isobject/3.0.1:
     resolution: {integrity: sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /jotai/1.7.1_react@18.1.0:
+    resolution: {integrity: sha512-Ucighxm0GwjvMpnLn7//CrHFSgLoL7LxHhXm7ofUNIktsRE4TAAhzrwsBb0LjJ0DuBJqQEJq9/jbHFfjO0ylYQ==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      '@babel/template': '*'
+      '@urql/core': '*'
+      immer: '*'
+      optics-ts: '*'
+      react: '>=16.8'
+      react-query: '*'
+      valtio: '*'
+      wonka: '*'
+      xstate: '*'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      '@urql/core':
+        optional: true
+      immer:
+        optional: true
+      optics-ts:
+        optional: true
+      react-query:
+        optional: true
+      valtio:
+        optional: true
+      wonka:
+        optional: true
+      xstate:
+        optional: true
+    dependencies:
+      react: 18.1.0
     dev: false
 
   /js-tokens/4.0.0:
