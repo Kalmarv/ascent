@@ -14,6 +14,7 @@ const User = (): JSX.Element => {
   const { user } = router.query
   const [lastFmData, setLastFmData] = useState<null | lastFmData>()
 
+  // maybe useMemo here?
   useEffect(() => {
     getLastFmData(user).then((songData) => setLastFmData(songData))
   }, [user])

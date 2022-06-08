@@ -1,4 +1,4 @@
-import { lastFmData, lastFmSongProps } from '../types/types'
+import { lastFmSongProps } from '../types/types'
 
 const SongInfo: React.FC<lastFmSongProps> = ({ song }): JSX.Element => {
   //   const { track } = songData
@@ -6,12 +6,6 @@ const SongInfo: React.FC<lastFmSongProps> = ({ song }): JSX.Element => {
     <div className="absolute bottom-0 right-0 m-2">
       <h1 className="font-bold text-right text-black">{song.track}</h1>
       <h2 className="text-right text-black">{song.artist}</h2>
-      {/* <h2>{song.album}</h2> */}
-      {/* <a href={lastFmData?.url}>
-        <img className="m-16 w-1/2 rounded-lg" src={lastFmData?.image}></img>
-      </a> */}
-
-      {/* <p>User: {user}</p> */}
     </div>
   )
 }

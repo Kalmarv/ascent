@@ -5,13 +5,7 @@ import { useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
-import { atomWithStorage } from 'jotai/utils'
-
-const bgValues = atomWithStorage('bgValues', {
-  lacunarity: 0.75,
-  gain: 0.3,
-  speed: 0.35,
-})
+import { bgValues } from '../lib/stores'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {
@@ -23,13 +17,13 @@ const Background = (colors: BackgroundProps) => {
 
   const [savedValues, setSavedValues] = useAtom(bgValues)
 
-  const { lacunarity, gain, speed } = useControls('Background', {
+  const [{ lacunarity, gain, speed }, set] = useControls('Background', () => ({
     lacunarity: {
       value: savedValues.lacunarity,
       min: 0,
       max: 5,
       onChange: (value) => {
-        setSavedValues({ ...savedValues, gain: value })
+        setSavedValues({ ...savedValues, lacunarity: value })
       },
       transient: false,
     },
@@ -51,14 +45,13 @@ const Background = (colors: BackgroundProps) => {
       },
       transient: false,
     },
-    'Reset Settings': button(() => {
-      localStorage.removeItem('bgValues')
-      // set the default values back to the original
-      // should probably just set the values to the original
-      // https://github.com/pmndrs/leva/blob/main/docs/advanced/controlled-inputs.md#set-and-onchange
-      location.reload()
-    }),
-  })
+  }))
+
+  const resetButton = useControls('Reset', () => ({
+    // load the default values from object
+    'Reset Settings': button(() => set({ speed: 0.35, lacunarity: 0.75, gain: 0.3 })),
+  }))
+
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
 

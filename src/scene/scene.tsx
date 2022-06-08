@@ -10,23 +10,17 @@ import { expandCols } from '../lib/expandColors'
 const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   const [songColors, setSongColors] = useState<Colors[]>([])
 
-  useEffect(() => {
-    getColors(song.image).then((extractedColors) => setSongColors(expandCols(extractedColors, 4)))
-  }, [song.image])
-
-  // sometimes the lastfm cdn returns a blank image
-  // this stops it from recreating the album with a blank image
+  // don't want to run getColors every 5 seconds
   useMemo(() => {
     return song
   }, [song])
 
+  useEffect(() => {
+    getColors(song.image).then((extractedColors) => setSongColors(expandCols(extractedColors, 4)))
+  }, [song.image])
+
   return (
-    <Canvas
-      style={{
-        height: '100vh',
-        // background: `linear-gradient(to bottom right, ${songColors[0]?.hex}, ${songColors[1]?.hex})`,
-      }}
-    >
+    <Canvas style={{ height: '100vh' }}>
       {/* Tried to match the brightness to what I see visually in spotify */}
       <ambientLight intensity={0.8} />
       <Album cover={song.image} scale={[1, 1, 0.05]} />

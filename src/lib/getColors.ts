@@ -1,6 +1,5 @@
 // the @types package was not really working
-// FIXME: make pull request for @types/extract-colors or make it work
-//@ts-ignore
+// @ts-ignore
 import extractColors from 'extract-colors'
 import { Colors } from '../types/types'
 
