@@ -6,6 +6,7 @@ import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
 import { bgValues } from '../lib/stores'
+import { defaultBGValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {
@@ -48,8 +49,7 @@ const Background = (colors: BackgroundProps) => {
   }))
 
   const resetButton = useControls('Reset', () => ({
-    // load the default values from object
-    'Reset Settings': button(() => set({ speed: 0.35, lacunarity: 0.75, gain: 0.3 })),
+    'Reset Settings': button(() => set(defaultBGValues)),
   }))
 
   const mRef = useRef<any>()

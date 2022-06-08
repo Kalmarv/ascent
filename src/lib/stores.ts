@@ -1,7 +1,4 @@
 import { atomWithStorage } from 'jotai/utils'
+import { defaultBGValues } from './constants'
 
-export const bgValues = atomWithStorage('bgValues', {
-  lacunarity: 0.75,
-  gain: 0.3,
-  speed: 0.35,
-})
+export const bgValues = atomWithStorage('bgValues', defaultBGValues)
