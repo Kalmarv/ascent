@@ -23,7 +23,7 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
     <Canvas style={{ height: '100vh' }}>
       {/* Tried to match the brightness to what I see visually in spotify */}
       <ambientLight intensity={0.8} />
-      <Album cover={song.image} scale={[1, 1, 0.05]} />
+      <Album cover={song.image} />
       <Background colors={songColors} />
       <OrbitControls />
     </Canvas>
