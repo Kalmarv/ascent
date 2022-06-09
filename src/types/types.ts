@@ -10,8 +10,14 @@ declare global {
   }
 }
 
+export interface APIErrorResponse {
+  message: string
+}
+
 export interface LastFmResponse {
   recenttracks: Recenttracks
+  message?: string
+  error?: number
 }
 
 export interface Recenttracks {

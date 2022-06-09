@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import SongInfo from '../../components/songinfo'
 import { lastFmData } from '../../types/types'
 import useInterval from 'use-interval'
@@ -7,31 +7,42 @@ import { getLastFmData } from '../../lib/getLastFmData'
 import dynamic from 'next/dynamic'
 import Loading from '../../components/loading'
 import { Leva } from 'leva'
+import APIError from '../../components/apiError'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {
   const router = useRouter()
   const { user } = router.query
   const [lastFmData, setLastFmData] = useState<null | lastFmData>()
+  const [error, setError] = useState<null | string>()
+
+  const getUserPlaying = useCallback(async () => {
+    const apiResponse = await getLastFmData(user)
+    if (apiResponse.error) {
+      setError(apiResponse.message)
+    } else {
+      setLastFmData(apiResponse)
+    }
+  }, [user])
 
   // maybe useMemo here?
   useEffect(() => {
-    getLastFmData(user).then((songData) => setLastFmData(songData))
-  }, [user])
-
+    getUserPlaying()
+  }, [getUserPlaying, user])
   useInterval(() => {
-    getLastFmData(user).then((songData) => setLastFmData(songData))
+    getUserPlaying()
   }, 5000)
 
   return (
     <>
-      {lastFmData && (
+      {lastFmData && !error && (
         <>
           <Leva />
           <Scene song={lastFmData} />
           <SongInfo song={lastFmData} />
         </>
       )}
+      {error && <APIError message={error} />}
     </>
   )
 }
