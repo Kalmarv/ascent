@@ -33,16 +33,19 @@ const User = (): JSX.Element => {
     getUserPlaying()
   }, 5000)
 
+  if (error) {
+    return <APIError message={error} />
+  }
+
+  if (!lastFmData) {
+    return <Loading />
+  }
+
   return (
     <>
-      {lastFmData && !error && (
-        <>
-          <Leva />
-          <Scene song={lastFmData} />
-          <SongInfo song={lastFmData} />
-        </>
-      )}
-      {error && <APIError message={error} />}
+      <Leva />
+      <Scene song={lastFmData} />
+      <SongInfo song={lastFmData} />
     </>
   )
 }
