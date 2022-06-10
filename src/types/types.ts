@@ -1,11 +1,20 @@
 import { MeshProps } from '@react-three/fiber'
-import { CustomMaterial } from '../scene/shaders/bgShader'
+import { FlowMaterial } from '../scene/shaders/flowShader'
 import { MaterialNode } from '@react-three/fiber'
+import { TunnelMaterial } from '../scene/shaders/tunnelShader'
 
 declare global {
   namespace JSX {
     interface IntrinsicElements {
-      customMaterial: MaterialNode<any, typeof CustomMaterial>
+      flowMaterial: MaterialNode<any, typeof FlowMaterial>
+    }
+  }
+}
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      tunnelMaterial: MaterialNode<any, typeof TunnelMaterial>
     }
   }
 }

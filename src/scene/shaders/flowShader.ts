@@ -2,7 +2,7 @@ import { shaderMaterial } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
 import * as THREE from 'three'
 
-export const CustomMaterial = shaderMaterial(
+export const FlowMaterial = shaderMaterial(
   // Uniforms
   {
     u_resolution: new THREE.Vector2(0, 0),
@@ -184,4 +184,4 @@ void main() {
   `
 )
 
-extend({ CustomMaterial })
+extend({ FlowMaterial })

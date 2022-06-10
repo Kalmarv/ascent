@@ -1,5 +1,6 @@
 import { useFrame } from '@react-three/fiber'
-import { CustomMaterial } from './shaders/bgShader'
+import { FlowMaterial } from './shaders/flowShader'
+import { TunnelMaterial } from './shaders/tunnelShader'
 import { button, useControls } from 'leva'
 import { useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
@@ -17,8 +18,11 @@ const Background = (colors: BackgroundProps) => {
   }, [colors.colors])
 
   const [savedValues, setSavedValues] = useAtom(bgValues)
+  const bgSelect = useControls({
+    background: { options: { flow: 'flow', tunnel: 'tunnel' } },
+  })
 
-  const [{ lacunarity, gain, speed }, set] = useControls('Background', () => ({
+  const [{ lacunarity, gain, speed }, set] = useControls('Flow', () => ({
     lacunarity: {
       value: savedValues.lacunarity,
       min: 0,
@@ -65,19 +69,38 @@ const Background = (colors: BackgroundProps) => {
     return (
       <mesh>
         <boxBufferGeometry ref={gRef} args={[10, 10, 10]} />
-        <customMaterial
-          col1={albumColors[0]}
-          col2={albumColors[1]}
-          col3={albumColors[2]}
-          col4={albumColors[3]}
-          lacunarity={lacunarity}
-          gain={gain}
-          speed_mult={speed}
-          u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
-          side={BackSide}
-          ref={mRef}
-          key={CustomMaterial.key}
-        />
+        {bgSelect.background === 'flow' ? (
+          <flowMaterial
+            col1={albumColors[0]}
+            col2={albumColors[1]}
+            col3={albumColors[2]}
+            col4={albumColors[3]}
+            lacunarity={lacunarity}
+            gain={gain}
+            speed_mult={speed}
+            u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
+            side={BackSide}
+            ref={mRef}
+            key={FlowMaterial.key}
+          />
+        ) : (
+          <tunnelMaterial
+            col1={albumColors[0]}
+            col2={albumColors[1]}
+            col3={albumColors[2]}
+            col4={albumColors[3]}
+            speed_mult={speed}
+            glow={-0.25}
+            noise_step={11.0}
+            noise_shape={1.2}
+            noise_scale={1.7}
+            thickness={0.3}
+            u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
+            side={BackSide}
+            ref={mRef}
+            key={TunnelMaterial.key}
+          />
+        )}
       </mesh>
     )
   }
