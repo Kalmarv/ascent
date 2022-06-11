@@ -7,7 +7,7 @@ import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
 import { bgValues } from '../lib/stores'
-import { defaultBGValues, defaultShaderValues } from '../lib/constants'
+import { defaultFlowValues, defaultShaderSelection, defaultTunnelValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {
@@ -49,10 +49,59 @@ const Background = (colors: BackgroundProps) => {
     },
   }))
 
+  const [{ glow, step, shape, scale, thickness }, setTunnel] = useControls('Tunnel', () => ({
+    glow: {
+      value: savedValues.glow,
+      min: -1,
+      max: 1,
+      onChange: (value) => {
+        setSavedValues({ ...savedValues, glow: value })
+      },
+      transient: false,
+    },
+    step: {
+      value: savedValues.step,
+      min: 0,
+      max: 15,
+      onChange: (value) => {
+        setSavedValues({ ...savedValues, step: value })
+      },
+      transient: false,
+    },
+    shape: {
+      value: savedValues.shape,
+      min: 0,
+      max: 2,
+      onChange: (value) => {
+        setSavedValues({ ...savedValues, shape: value })
+      },
+      transient: false,
+    },
+    scale: {
+      value: savedValues.scale,
+      min: 0,
+      max: 20,
+      onChange: (value) => {
+        setSavedValues({ ...savedValues, scale: value })
+      },
+      transient: false,
+    },
+    thickness: {
+      value: savedValues.thickness,
+      min: 0,
+      max: 0.1,
+      onChange: (value) => {
+        setSavedValues({ ...savedValues, thickness: value })
+      },
+      transient: false,
+    },
+  }))
+
   const resetButton = useControls('Reset', () => ({
     'Reset Settings': button(() => {
-      setSavedValues({ ...savedValues, ...defaultShaderValues })
-      setFlow(defaultBGValues)
+      setSavedValues({ ...savedValues, ...defaultShaderSelection })
+      setFlow(defaultFlowValues)
+      setTunnel(defaultTunnelValues)
     }),
   }))
 
@@ -90,11 +139,11 @@ const Background = (colors: BackgroundProps) => {
             col3={albumColors[2]}
             col4={albumColors[3]}
             speed_mult={speed}
-            glow={-0.25}
-            noise_step={11.0}
-            noise_shape={1.2}
-            noise_scale={1.7}
-            thickness={0.3}
+            glow={glow}
+            noise_step={step}
+            noise_shape={shape}
+            noise_scale={scale}
+            thickness={thickness}
             u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
             side={BackSide}
             ref={mRef}
