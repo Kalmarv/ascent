@@ -7,7 +7,7 @@ import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
 import { bgValues } from '../lib/stores'
-import { defaultBGValues } from '../lib/constants'
+import { defaultBGValues, defaultShaderValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {
@@ -18,11 +18,8 @@ const Background = (colors: BackgroundProps) => {
   }, [colors.colors])
 
   const [savedValues, setSavedValues] = useAtom(bgValues)
-  const bgSelect = useControls({
-    background: { options: { flow: 'flow', tunnel: 'tunnel' } },
-  })
 
-  const [{ lacunarity, gain, speed }, set] = useControls('Flow', () => ({
+  const [{ lacunarity, gain, speed }, setFlow] = useControls('Flow', () => ({
     lacunarity: {
       value: savedValues.lacunarity,
       min: 0,
@@ -53,7 +50,10 @@ const Background = (colors: BackgroundProps) => {
   }))
 
   const resetButton = useControls('Reset', () => ({
-    'Reset Settings': button(() => set(defaultBGValues)),
+    'Reset Settings': button(() => {
+      console.log(savedValues)
+      setFlow(defaultBGValues)
+    }),
   }))
 
   const mRef = useRef<any>()
@@ -69,7 +69,7 @@ const Background = (colors: BackgroundProps) => {
     return (
       <mesh>
         <boxBufferGeometry ref={gRef} args={[10, 10, 10]} />
-        {bgSelect.background === 'flow' ? (
+        {savedValues.background === 'flow' ? (
           <flowMaterial
             col1={albumColors[0]}
             col2={albumColors[1]}

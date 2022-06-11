@@ -1,4 +1,4 @@
 import { atomWithStorage } from 'jotai/utils'
-import { defaultBGValues } from './constants'
+import { defaultBGValues, defaultShaderValues } from './constants'
 
-export const bgValues = atomWithStorage('bgValues', defaultBGValues)
+export const bgValues = atomWithStorage('bgValues', { ...defaultBGValues, ...defaultShaderValues })
