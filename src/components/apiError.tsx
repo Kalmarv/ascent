@@ -21,6 +21,9 @@ const APIError: React.FC<APIErrorResponse> = ({ message }): JSX.Element => {
         <span>{message}</span>
       </div>
       <div className="flex-none">
+        <button className="btn btn-sm" onClick={() => router.reload()}>
+          Reload
+        </button>
         <button className="btn btn-sm" onClick={() => router.push('/')}>
           Go to main page
         </button>
