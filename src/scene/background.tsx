@@ -51,7 +51,7 @@ const Background = (colors: BackgroundProps) => {
 
   const resetButton = useControls('Reset', () => ({
     'Reset Settings': button(() => {
-      console.log(savedValues)
+      setSavedValues({ ...savedValues, ...defaultShaderValues })
       setFlow(defaultBGValues)
     }),
   }))

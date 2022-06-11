@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic'
 import Loading from '../../components/loading'
 import { Leva } from 'leva'
 import APIError from '../../components/apiError'
+import SceneOptions from '../../components/sceneOptions'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {
@@ -46,6 +47,7 @@ const User = (): JSX.Element => {
       <Leva />
       <Scene song={lastFmData} />
       <SongInfo song={lastFmData} />
+      <SceneOptions />
     </>
   )
 }
