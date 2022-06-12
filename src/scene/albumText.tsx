@@ -1,12 +1,16 @@
 import { Suspense, useMemo } from 'react'
 import { Colors } from '../types/types'
-import { Text } from '@react-three/drei'
+import { MeshDistortMaterial, Text } from '@react-three/drei'
 
 const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
   const albumColors = useMemo(() => {
-    const filterHex = [...colors].map((color) => {
-      return color.hex
-    })
+    const filterHex = [...colors]
+      .map((color) => {
+        // approximate the brightness of the color and sort for good contrast
+        const brightness = (color.red + color.red + color.blue + color.green + color.green + color.green) / 6
+        return { hex: color.hex, brightness: brightness }
+      })
+      .sort((a, b) => a.brightness - b.brightness)
     return filterHex
   }, [colors])
 
@@ -22,13 +26,15 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
         maxWidth={2}
-        // outlineColor={albumColors[1]}
-        // outlineWidth={0.005}
+        outlineColor={albumColors[0].hex}
+        outlineWidth={0.005}
+        outlineOffsetX={0.0075}
+        outlineOffsetY={0.0075}
         textAlign="left"
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
-        <meshBasicMaterial color={albumColors[0]} />
+        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[3].hex} />
       </Text>
     </Suspense>
   )
