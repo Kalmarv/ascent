@@ -9,6 +9,7 @@ import Loading from '../../components/loading'
 import { Leva } from 'leva'
 import APIError from '../../components/apiError'
 import SceneOptions from '../../components/sceneOptions'
+import Head from 'next/head'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {
@@ -44,7 +45,11 @@ const User = (): JSX.Element => {
 
   return (
     <>
-      <Leva />
+      <Head>
+        <title>Ascent - {user}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Leva collapsed={true} />
       <Scene song={lastFmData} />
       <SongInfo song={lastFmData} />
       <SceneOptions />
