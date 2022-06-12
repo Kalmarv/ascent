@@ -2,7 +2,7 @@ import { useFrame } from '@react-three/fiber'
 import { FlowMaterial } from './shaders/flowShader'
 import { TunnelMaterial } from './shaders/tunnelShader'
 import { button, useControls } from 'leva'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
@@ -21,81 +21,17 @@ const Background = (colors: BackgroundProps) => {
   const [selectedShader, setSelectedShader] = useAtom(guiOptions)
 
   const [{ lacunarity, gain, speed }, setFlow] = useControls('Flow', () => ({
-    lacunarity: {
-      value: savedValues.lacunarity,
-      min: 0,
-      max: 5,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, lacunarity: value })
-      },
-      transient: false,
-    },
-    gain: {
-      value: savedValues.gain,
-      min: 0,
-      max: 1,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, gain: value })
-      },
-      transient: false,
-    },
-    speed: {
-      value: savedValues.speed,
-      min: 0,
-      max: 5,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, speed: value })
-      },
-      transient: false,
-    },
+    lacunarity: { value: savedValues.lacunarity, min: 0, max: 5 },
+    gain: { value: savedValues.gain, min: 0, max: 1 },
+    speed: { value: savedValues.speed, min: 0, max: 5 },
   }))
 
   const [{ glow, step, shape, scale, thickness }, setTunnel] = useControls('Tunnel', () => ({
-    glow: {
-      value: savedValues.glow,
-      min: 0,
-      max: 1,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, glow: value })
-      },
-      transient: false,
-    },
-    step: {
-      value: savedValues.step,
-      min: 0,
-      max: 15,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, step: value })
-      },
-      transient: false,
-    },
-    shape: {
-      value: savedValues.shape,
-      min: 0,
-      max: 2,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, shape: value })
-      },
-      transient: false,
-    },
-    scale: {
-      value: savedValues.scale,
-      min: 0,
-      max: 20,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, scale: value })
-      },
-      transient: false,
-    },
-    thickness: {
-      value: savedValues.thickness,
-      min: 0,
-      max: 0.1,
-      onChange: (value) => {
-        setSavedValues({ ...savedValues, thickness: value })
-      },
-      transient: false,
-    },
+    glow: { value: savedValues.glow, min: 0, max: 1 },
+    step: { value: savedValues.step, min: 0, max: 15 },
+    shape: { value: savedValues.shape, min: 0, max: 2 },
+    scale: { value: savedValues.scale, min: 0, max: 20 },
+    thickness: { value: savedValues.thickness, min: 0, max: 0.1 },
   }))
 
   const resetButton = useControls('Reset', () => ({
@@ -105,6 +41,24 @@ const Background = (colors: BackgroundProps) => {
       setTunnel(defaultTunnelValues)
     }),
   }))
+
+  // yeah idk, I spend 5 hours on this and no progress
+  // check out the values in local storage changing,
+  // this is what is setting the vales back to what they actually are
+  // this might actually be better though
+  useEffect(() => {
+    setSavedValues({
+      ...savedValues,
+      lacunarity: lacunarity,
+      gain: gain,
+      speed: speed,
+      glow: glow,
+      step: step,
+      shape: shape,
+      scale: scale,
+      thickness: thickness,
+    })
+  }, [lacunarity, gain, speed, glow, step, shape, scale, thickness, setSavedValues, savedValues])
 
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
