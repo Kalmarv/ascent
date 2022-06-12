@@ -30,7 +30,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[3].hex} />
+        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[3]?.hex || '#ffffff'} />
       </Text>
       <Text
         position={[0.763, -0.013, -0.013]}
@@ -46,7 +46,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[0].hex} />
+        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[0]?.hex || '#000000'} />
       </Text>
     </Suspense>
   )
