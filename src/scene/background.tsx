@@ -38,8 +38,8 @@ const Background = (colors: BackgroundProps) => {
     speed: { value: savedValues.speed, min: 0, max: 5 },
   }))
 
-  const resetButton = useControls('Reset', () => ({
-    'Reset Settings': button(() => {
+  const resetButton = useControls('Reset Background', () => ({
+    'Reset Background': button(() => {
       setSelectedShader({ ...selectedShader, ...defaultShaderSelection })
       setFlow(defaultFlowValues)
       setSpeed(defaultSpeedValues)

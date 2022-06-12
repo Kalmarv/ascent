@@ -16,6 +16,11 @@ export const defaultSpeedValues = {
   speed: 0.35,
 }
 
+export const defaultTextValues = {
+  distortion: 0.3,
+  textSpeed: 1,
+}
+
 export const defaultShaderSelection = {
   background: 'flow',
 }

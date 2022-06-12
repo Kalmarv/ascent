@@ -1,6 +1,10 @@
-import { Suspense, useMemo } from 'react'
+import { Suspense, useEffect, useMemo } from 'react'
 import { Colors } from '../types/types'
 import { MeshDistortMaterial, Text } from '@react-three/drei'
+import { button, useControls } from 'leva'
+import { useAtom } from 'jotai'
+import { levaOptions } from '../lib/stores'
+import { defaultTextValues } from '../lib/constants'
 
 const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
   const albumColors = useMemo(() => {
@@ -13,6 +17,27 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
       .sort((a, b) => a.brightness - b.brightness)
     return filterHex
   }, [colors])
+
+  const [savedValues, setSavedValues] = useAtom(levaOptions)
+
+  const [{ distortion, textSpeed }, setText] = useControls('Text', () => ({
+    distortion: { value: savedValues.distortion, min: 0, max: 1 },
+    textSpeed: { value: savedValues.textSpeed, min: 0, max: 5 },
+  }))
+
+  const resetButton = useControls('Reset', () => ({
+    'Reset Text': button(() => {
+      setText(defaultTextValues)
+    }),
+  }))
+
+  useEffect(() => {
+    setSavedValues({
+      ...savedValues,
+      distortion: distortion,
+      textSpeed: textSpeed,
+    })
+  }, [distortion, textSpeed, savedValues, setSavedValues])
 
   return (
     <Suspense fallback={null}>
@@ -30,7 +55,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[3]?.hex || '#ffffff'} />
+        <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[3]?.hex || '#ffffff'} />
       </Text>
       <Text
         position={[0.763, -0.013, -0.013]}
@@ -46,7 +71,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[0]?.hex || '#000000'} />
+        <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[0]?.hex || '#000000'} />
       </Text>
     </Suspense>
   )
