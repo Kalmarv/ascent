@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { getColors } from '../lib/getColors'
 import Background from './background'
 import { expandCols } from '../lib/expandColors'
+import AlbumText from './albumText'
 
 const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   const [songColors, setSongColors] = useState<Colors[]>([])
@@ -25,6 +26,7 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
       <ambientLight intensity={0.8} />
       <Album cover={song.image} />
       <Background colors={songColors} />
+      <AlbumText title={song.track} artist={song.artist} colors={songColors} />
       <OrbitControls />
     </Canvas>
   )
