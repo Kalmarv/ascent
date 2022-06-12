@@ -1,7 +1,6 @@
 export const defaultFlowValues = {
   lacunarity: 1.0,
   gain: 0.25,
-  speed: 0.35,
 }
 
 export const defaultTunnelValues = {
@@ -10,6 +9,10 @@ export const defaultTunnelValues = {
   shape: 1.2,
   scale: 1.7,
   thickness: 0.03,
+}
+
+export const defaultSpeedValues = {
+  speed: 0.35,
 }
 
 export const defaultShaderSelection = {

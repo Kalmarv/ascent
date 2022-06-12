@@ -7,7 +7,7 @@ import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
 import { levaOptions, guiOptions } from '../lib/stores'
-import { defaultFlowValues, defaultShaderSelection, defaultTunnelValues } from '../lib/constants'
+import { defaultFlowValues, defaultShaderSelection, defaultSpeedValues, defaultTunnelValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {
@@ -20,10 +20,9 @@ const Background = (colors: BackgroundProps) => {
   const [savedValues, setSavedValues] = useAtom(levaOptions)
   const [selectedShader, setSelectedShader] = useAtom(guiOptions)
 
-  const [{ lacunarity, gain, speed }, setFlow] = useControls('Flow', () => ({
+  const [{ lacunarity, gain }, setFlow] = useControls('Flow', () => ({
     lacunarity: { value: savedValues.lacunarity, min: 0, max: 5 },
     gain: { value: savedValues.gain, min: 0, max: 1 },
-    speed: { value: savedValues.speed, min: 0, max: 5 },
   }))
 
   const [{ glow, step, shape, scale, thickness }, setTunnel] = useControls('Tunnel', () => ({
@@ -34,10 +33,15 @@ const Background = (colors: BackgroundProps) => {
     thickness: { value: savedValues.thickness, min: 0, max: 0.1 },
   }))
 
+  const [{ speed }, setSpeed] = useControls('Speed', () => ({
+    speed: { value: savedValues.speed, min: 0, max: 5 },
+  }))
+
   const resetButton = useControls('Reset', () => ({
     'Reset Settings': button(() => {
       setSelectedShader({ ...selectedShader, ...defaultShaderSelection })
       setFlow(defaultFlowValues)
+      setSpeed(defaultSpeedValues)
       setTunnel(defaultTunnelValues)
     }),
   }))
