@@ -26,15 +26,27 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
         maxWidth={2}
-        outlineColor={albumColors[0].hex}
-        outlineWidth={0.005}
-        outlineOffsetX={0.0075}
-        outlineOffsetY={0.0075}
         textAlign="left"
         anchorX={'left'}
       >
         {`${title}\n${artist}`}
         <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[3].hex} />
+      </Text>
+      <Text
+        position={[0.763, -0.013, -0.013]}
+        fontSize={0.15}
+        lineHeight={1.2}
+        letterSpacing={0.05}
+        font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+        // @ts-ignore
+        sdfGlyphSize={128}
+        glyphGeometryDetail={64}
+        maxWidth={2}
+        textAlign="left"
+        anchorX={'left'}
+      >
+        {`${title}\n${artist}`}
+        <MeshDistortMaterial speed={1} distort={0.3} color={albumColors[0].hex} />
       </Text>
     </Suspense>
   )
