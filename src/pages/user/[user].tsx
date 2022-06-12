@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import SongInfo from '../../components/songinfo'
 import { lastFmData } from '../../types/types'
 import useInterval from 'use-interval'
 import { getLastFmData } from '../../lib/getLastFmData'
@@ -51,7 +50,6 @@ const User = (): JSX.Element => {
       </Head>
       <Leva collapsed={true} />
       <Scene song={lastFmData} />
-      <SongInfo song={lastFmData} />
       <SceneOptions />
     </>
   )
