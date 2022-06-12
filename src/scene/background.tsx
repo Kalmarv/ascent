@@ -20,9 +20,10 @@ const Background = (colors: BackgroundProps) => {
   const [savedValues, setSavedValues] = useAtom(levaOptions)
   const [selectedShader, setSelectedShader] = useAtom(guiOptions)
 
-  const [{ lacunarity, gain }, setFlow] = useControls('Flow', () => ({
+  const [{ lacunarity, gain, ridges }, setFlow] = useControls('Flow', () => ({
     lacunarity: { value: savedValues.lacunarity, min: 0, max: 5 },
     gain: { value: savedValues.gain, min: 0, max: 1 },
+    ridges: { value: savedValues.ridges, min: 50, max: 500 },
   }))
 
   const [{ glow, step, shape, scale, thickness }, setTunnel] = useControls('Tunnel', () => ({
@@ -55,6 +56,7 @@ const Background = (colors: BackgroundProps) => {
       ...savedValues,
       lacunarity: lacunarity,
       gain: gain,
+      ridges: ridges,
       speed: speed,
       glow: glow,
       step: step,
@@ -62,7 +64,7 @@ const Background = (colors: BackgroundProps) => {
       scale: scale,
       thickness: thickness,
     })
-  }, [lacunarity, gain, speed, glow, step, shape, scale, thickness, setSavedValues, savedValues])
+  }, [lacunarity, gain, speed, glow, step, shape, scale, thickness, setSavedValues, savedValues, ridges])
 
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
@@ -85,6 +87,7 @@ const Background = (colors: BackgroundProps) => {
             col4={albumColors[3]}
             lacunarity={lacunarity}
             gain={gain}
+            ridges={ridges}
             speed_mult={speed}
             u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
             side={BackSide}

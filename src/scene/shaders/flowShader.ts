@@ -14,6 +14,7 @@ export const FlowMaterial = shaderMaterial(
     lacunarity: 0,
     gain: 0,
     speed_mult: 0,
+    ridges: 0,
   },
   // Vertex Shader
   // "uv" is accessible globally inside the Vertex Shader
@@ -39,6 +40,7 @@ uniform float u_time;
 uniform float lacunarity;
 uniform float gain;
 uniform float speed_mult;
+uniform float ridges;
 
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 
@@ -92,7 +94,7 @@ float snoise2(vec2 v) {
   vec3 g;
   g.x = a0.x * x0.x + h.x * x0.y;
   g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-  return 130.0 * dot(m, g);
+  return ridges * dot(m, g);
 }
 
 #define OCTAVES 6

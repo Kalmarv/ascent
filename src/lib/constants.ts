@@ -1,6 +1,7 @@
 export const defaultFlowValues = {
   lacunarity: 1.0,
   gain: 0.25,
+  ridges: 130,
 }
 
 export const defaultTunnelValues = {
