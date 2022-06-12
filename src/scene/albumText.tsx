@@ -20,9 +20,10 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
 
   const [savedValues, setSavedValues] = useAtom(levaOptions)
 
-  const [{ distortion, textSpeed }, setText] = useControls('Text', () => ({
+  const [{ distortion, textSpeed, fontSize }, setText] = useControls('Text', () => ({
     distortion: { value: savedValues.distortion, min: 0, max: 1 },
     textSpeed: { value: savedValues.textSpeed, min: 0, max: 5 },
+    fontSize: { value: savedValues.fontSize, min: 0, max: 1 },
   }))
 
   const resetButton = useControls('Reset', () => ({
@@ -36,14 +37,15 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
       ...savedValues,
       distortion: distortion,
       textSpeed: textSpeed,
+      fontSize: fontSize,
     })
-  }, [distortion, textSpeed, savedValues, setSavedValues])
+  }, [distortion, textSpeed, savedValues, setSavedValues, fontSize])
 
   return (
     <Suspense fallback={null}>
       <Text
         position={[0.75, 0, 0]}
-        fontSize={0.15}
+        fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
         font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
@@ -59,7 +61,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
       </Text>
       <Text
         position={[0.763, -0.013, -0.013]}
-        fontSize={0.15}
+        fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
         font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
