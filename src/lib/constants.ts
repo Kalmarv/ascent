@@ -1,6 +1,6 @@
 export const defaultFlowValues = {
-  lacunarity: 0.75,
-  gain: 0.3,
+  lacunarity: 1.0,
+  gain: 0.25,
   speed: 0.35,
 }
 

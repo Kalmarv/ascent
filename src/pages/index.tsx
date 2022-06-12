@@ -18,13 +18,16 @@ const Home: NextPage = (): JSX.Element => {
     <>
       <h1 className="font-bold text-5xl text-center mt-20">{"What's your Last.fm UserName?"}</h1>
       <div className="grid place-items-center">
-        <form className="" onSubmit={(event) => handleSubmit(event)}>
-          <input
-            type="text"
-            name="userName"
-            className="mt-8 input input-bordered rounded-full input-accent w-full"
-          ></input>
-        </form>
+        <div className="form-control">
+          <div className="input-group">
+            <form className="" onSubmit={(event) => handleSubmit(event)}>
+              <input type="text" placeholder="Name…" name="userName" className="mt-8 input input-bordered" />
+              <button className="btn btn-square" type="submit">
+                Go
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </>
   )
