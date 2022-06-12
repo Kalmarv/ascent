@@ -1,8 +1,8 @@
 import { useAtom } from 'jotai'
-import { bgValues } from '../lib/stores'
+import { guiOptions } from '../lib/stores'
 
 const SceneOptions: React.FC<{}> = (): JSX.Element => {
-  const [savedValues, setSavedValues] = useAtom(bgValues)
+  const [savedValues, setSavedValues] = useAtom(guiOptions)
   const options = ['Flow', 'Tunnel']
 
   return (

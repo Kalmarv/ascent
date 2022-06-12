@@ -6,7 +6,7 @@ import { useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
-import { bgValues } from '../lib/stores'
+import { levaOptions, guiOptions } from '../lib/stores'
 import { defaultFlowValues, defaultShaderSelection, defaultTunnelValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
@@ -17,7 +17,8 @@ const Background = (colors: BackgroundProps) => {
     return filterHex
   }, [colors.colors])
 
-  const [savedValues, setSavedValues] = useAtom(bgValues)
+  const [savedValues, setSavedValues] = useAtom(levaOptions)
+  const [selectedShader, setSelectedShader] = useAtom(guiOptions)
 
   const [{ lacunarity, gain, speed }, setFlow] = useControls('Flow', () => ({
     lacunarity: {
@@ -52,7 +53,7 @@ const Background = (colors: BackgroundProps) => {
   const [{ glow, step, shape, scale, thickness }, setTunnel] = useControls('Tunnel', () => ({
     glow: {
       value: savedValues.glow,
-      min: -1,
+      min: 0,
       max: 1,
       onChange: (value) => {
         setSavedValues({ ...savedValues, glow: value })
@@ -99,7 +100,7 @@ const Background = (colors: BackgroundProps) => {
 
   const resetButton = useControls('Reset', () => ({
     'Reset Settings': button(() => {
-      setSavedValues({ ...savedValues, ...defaultShaderSelection })
+      setSelectedShader({ ...selectedShader, ...defaultShaderSelection })
       setFlow(defaultFlowValues)
       setTunnel(defaultTunnelValues)
     }),
@@ -118,7 +119,7 @@ const Background = (colors: BackgroundProps) => {
     return (
       <mesh>
         <boxBufferGeometry ref={gRef} args={[10, 10, 10]} />
-        {savedValues.background === 'flow' ? (
+        {selectedShader.background === 'flow' ? (
           <flowMaterial
             col1={albumColors[0]}
             col2={albumColors[1]}

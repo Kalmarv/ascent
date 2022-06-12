@@ -1,8 +1,9 @@
 import { atomWithStorage } from 'jotai/utils'
 import { defaultFlowValues, defaultShaderSelection, defaultTunnelValues } from './constants'
 
-export const bgValues = atomWithStorage('bgValues', {
+export const levaOptions = atomWithStorage('levaOptions', {
   ...defaultFlowValues,
   ...defaultTunnelValues,
-  ...defaultShaderSelection,
 })
+
+export const guiOptions = atomWithStorage('guiOptions', defaultShaderSelection)
