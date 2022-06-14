@@ -6,7 +6,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
 import { BackgroundProps } from '../types/types'
 import { useAtom } from 'jotai'
-import { levaOptions, guiOptions } from '../lib/stores'
+import { backgroundOptions, guiOptions } from '../lib/stores'
 import { defaultFlowValues, defaultShaderSelection, defaultSpeedValues, defaultTunnelValues } from '../lib/constants'
 
 const Background = (colors: BackgroundProps) => {
@@ -17,7 +17,7 @@ const Background = (colors: BackgroundProps) => {
     return filterHex
   }, [colors.colors])
 
-  const [savedValues, setSavedValues] = useAtom(levaOptions)
+  const [savedValues, setSavedValues] = useAtom(backgroundOptions)
   const [selectedShader, setSelectedShader] = useAtom(guiOptions)
 
   const [{ lacunarity, gain, ridges }, setFlow] = useControls('Flow', () => ({

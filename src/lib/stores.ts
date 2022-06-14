@@ -7,10 +7,13 @@ import {
   defaultTunnelValues,
 } from './constants'
 
-export const levaOptions = atomWithStorage('levaOptions', {
+export const backgroundOptions = atomWithStorage('backgroundOptions', {
   ...defaultFlowValues,
   ...defaultTunnelValues,
   ...defaultSpeedValues,
+})
+
+export const textOptions = atomWithStorage('textOptions', {
   ...defaultTextValues,
 })
 

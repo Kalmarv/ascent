@@ -3,7 +3,7 @@ import { Colors } from '../types/types'
 import { MeshDistortMaterial, Text } from '@react-three/drei'
 import { button, useControls } from 'leva'
 import { useAtom } from 'jotai'
-import { levaOptions } from '../lib/stores'
+import { textOptions } from '../lib/stores'
 import { defaultTextValues } from '../lib/constants'
 
 const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
@@ -18,7 +18,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
     return filterHex
   }, [colors])
 
-  const [savedValues, setSavedValues] = useAtom(levaOptions)
+  const [savedValues, setSavedValues] = useAtom(textOptions)
 
   const [{ distortion, textSpeed, fontSize }, setText] = useControls('Text', () => ({
     distortion: { value: savedValues.distortion, min: 0, max: 1 },
