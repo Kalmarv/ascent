@@ -1,6 +1,6 @@
-import { lastFmData, LastFmResponse } from '../../types/types'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { getFullImage } from '../../lib/getFullImage'
+import { lastFmData, LastFmResponse } from '../../types/types'
 
 const lastFmURL = (user: string): string => {
   return `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=${user}&api_key=${process.env.LASTFM_KEY}&limit=1&format=json`

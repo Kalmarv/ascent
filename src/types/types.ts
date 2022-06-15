@@ -1,6 +1,5 @@
-import { MeshProps } from '@react-three/fiber'
+import { MaterialNode, MeshProps } from '@react-three/fiber'
 import { FlowMaterial } from '../scene/shaders/flowShader'
-import { MaterialNode } from '@react-three/fiber'
 import { TunnelMaterial } from '../scene/shaders/tunnelShader'
 
 declare global {

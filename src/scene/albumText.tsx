@@ -1,10 +1,10 @@
-import { Suspense, useEffect, useMemo } from 'react'
-import { Colors } from '../types/types'
 import { MeshDistortMaterial, Text } from '@react-three/drei'
-import { button, useControls } from 'leva'
 import { useAtom } from 'jotai'
-import { textOptions } from '../lib/stores'
+import { button, useControls } from 'leva'
+import { Suspense, useEffect, useMemo } from 'react'
 import { defaultTextValues } from '../lib/constants'
+import { textOptions } from '../lib/stores'
+import { Colors } from '../types/types'
 
 const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
   const albumColors = useMemo(() => {

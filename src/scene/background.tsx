@@ -1,13 +1,13 @@
 import { useFrame } from '@react-three/fiber'
-import { FlowMaterial } from './shaders/flowShader'
-import { TunnelMaterial } from './shaders/tunnelShader'
+import { useAtom } from 'jotai'
 import { button, useControls } from 'leva'
 import { useEffect, useMemo, useRef } from 'react'
-import { BackSide, BoxBufferGeometry, DoubleSide, Vector2 } from 'three'
-import { BackgroundProps } from '../types/types'
-import { useAtom } from 'jotai'
-import { backgroundOptions, guiOptions } from '../lib/stores'
+import { BackSide, BoxBufferGeometry, Vector2 } from 'three'
 import { defaultFlowValues, defaultShaderSelection, defaultSpeedValues, defaultTunnelValues } from '../lib/constants'
+import { backgroundOptions, guiOptions } from '../lib/stores'
+import { BackgroundProps } from '../types/types'
+import { FlowMaterial } from './shaders/flowShader'
+import { TunnelMaterial } from './shaders/tunnelShader'
 
 const Background = (colors: BackgroundProps) => {
   const albumColors = useMemo(() => {

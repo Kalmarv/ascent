@@ -1,14 +1,14 @@
+import { Leva } from 'leva'
+import dynamic from 'next/dynamic'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useCallback, useEffect, useState } from 'react'
-import { lastFmData } from '../../types/types'
 import useInterval from 'use-interval'
-import { getLastFmData } from '../../lib/getLastFmData'
-import dynamic from 'next/dynamic'
-import Loading from '../../components/loading'
-import { Leva } from 'leva'
 import APIError from '../../components/apiError'
+import Loading from '../../components/loading'
 import SceneOptions from '../../components/sceneOptions'
-import Head from 'next/head'
+import { getLastFmData } from '../../lib/getLastFmData'
+import { lastFmData } from '../../types/types'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
 
 const User = (): JSX.Element => {

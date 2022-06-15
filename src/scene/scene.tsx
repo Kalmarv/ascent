@@ -1,12 +1,12 @@
-import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { useEffect, useMemo, useState } from 'react'
+import { expandCols } from '../lib/expandColors'
+import { getColors } from '../lib/getColors'
 import { Colors, lastFmSongProps } from '../types/types'
 import Album from './album'
-import { useEffect, useMemo, useState } from 'react'
-import { getColors } from '../lib/getColors'
-import Background from './background'
-import { expandCols } from '../lib/expandColors'
 import AlbumText from './albumText'
+import Background from './background'
 
 const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   const [songColors, setSongColors] = useState<Colors[]>([])

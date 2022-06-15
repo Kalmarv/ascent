@@ -1,9 +1,9 @@
+import { animated, config, useSpring } from '@react-spring/three'
+import { Float } from '@react-three/drei'
+import { useLoader } from '@react-three/fiber'
 import { useRef, useState } from 'react'
 import { TextureLoader } from 'three'
-import { useLoader } from '@react-three/fiber'
 import { AlbumProps } from '../types/types'
-import { useSpring, animated, config } from '@react-spring/three'
-import { Float } from '@react-three/drei'
 
 const Album = ({ cover, ...props }: AlbumProps) => {
   const mesh = useRef<THREE.Mesh>(null!)
