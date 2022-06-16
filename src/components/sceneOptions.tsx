@@ -1,8 +1,7 @@
-import { useAtom } from 'jotai'
-import { guiOptions } from '../lib/stores'
+import { useState } from 'react'
 
 const SceneOptions: React.FC<{}> = (): JSX.Element => {
-  const [savedValues, setSavedValues] = useAtom(guiOptions)
+  const [selectedShader, setSelectedShader] = useState<string>('flow')
   const options = ['Flow', 'Tunnel']
 
   return (
@@ -13,11 +12,11 @@ const SceneOptions: React.FC<{}> = (): JSX.Element => {
             <a
               key={option}
               className={`tab ${
-                savedValues.background === option.toLocaleLowerCase()
+                selectedShader === option.toLocaleLowerCase()
                   ? 'font-bold backdrop-blur bg-black/[0.15] rounded-full'
                   : ''
               }`}
-              onClick={() => setSavedValues({ ...savedValues, background: option.toLocaleLowerCase() })}
+              onClick={() => setSelectedShader(option.toLocaleLowerCase())}
             >
               {option}
             </a>

@@ -1,4 +1,3 @@
-import { Leva } from 'leva'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -48,7 +47,6 @@ const User = (): JSX.Element => {
         <title>Ascent - {user}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Leva collapsed={true} />
       <Scene song={lastFmData} />
       <SceneOptions />
     </>
