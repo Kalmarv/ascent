@@ -8,9 +8,9 @@ export const defaultSceneSettings = {
   scale: 1.7,
   thickness: 0.03,
   shaderSpeed: 0.35,
-  distortion: 0.3,
+  distortion: 0.2,
   textSpeed: 1,
-  fontSize: 0.15,
+  fontSize: 0.2,
   backgroundShader: 'flow',
-  textCutoff: 2,
+  textCutoff: 2.6,
 }

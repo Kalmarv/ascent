@@ -23,7 +23,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
   return (
     <Suspense fallback={null}>
       <Text
-        position={[0.75, 0, 0]}
+        position={[0, 0, -0.5]}
         fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
@@ -34,12 +34,13 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         maxWidth={textCutoff}
         textAlign="left"
         anchorX={'left'}
+        rotation-y={-Math.PI / 9}
       >
         {`${title}\n${artist}`}
         <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[3]?.hex || '#ffffff'} />
       </Text>
       <Text
-        position={[0.763, -0.013, -0.013]}
+        position={[0.013, -0.013, -0.513]}
         fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
@@ -50,6 +51,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         maxWidth={textCutoff}
         textAlign="left"
         anchorX={'left'}
+        rotation-y={-Math.PI / 9}
       >
         {`${title}\n${artist}`}
         <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[0]?.hex || '#000000'} />

@@ -21,7 +21,7 @@ const Scene: React.FC<lastFmSongProps> = ({ song }) => {
   }, [song.image])
 
   return (
-    <Canvas style={{ height: '100vh' }}>
+    <Canvas style={{ height: '100vh' }} camera={{ fov: 50, position: [0, 0.1, 4] }}>
       {/* Tried to match the brightness to what I see visually in spotify */}
       <ambientLight intensity={0.8} />
       <Album cover={song.image} />

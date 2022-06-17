@@ -11,7 +11,7 @@ const Album = ({ cover, ...props }: AlbumProps) => {
   const [hovered, hover] = useState(false)
 
   const { scale } = useSpring({
-    scale: hovered ? 1.25 : 1,
+    scale: hovered ? 3 : 2,
     config: config.wobbly,
   })
 
@@ -25,18 +25,21 @@ const Album = ({ cover, ...props }: AlbumProps) => {
           scale={scale}
           onPointerOver={(event) => hover(true)}
           onPointerOut={(event) => hover(false)}
+          position={[-1.5, 0, 0]}
+          rotation-y={Math.PI / 9}
         >
           <planeBufferGeometry />
           <meshStandardMaterial map={albumCover} />
         </animated.mesh>
         <animated.mesh
-          position={[0, 0, -0.014]}
+          position={[-1.505, 0, -0.014]}
           onPointerOver={(event) => hover(true)}
           onPointerOut={(event) => hover(false)}
           // have to separate the axis to keep reactive spring values as well as fixed z-scale
           scale-x={scale}
           scale-y={scale}
           scale-z={0.025}
+          rotation-y={Math.PI / 9}
         >
           <boxBufferGeometry />
           <meshBasicMaterial color="#121212" />
