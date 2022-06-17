@@ -3,11 +3,13 @@ import { combine } from 'zustand/middleware'
 
 type defaultSettings = {
   paneExist: boolean
+  shaderSpeed: number
 }
 
 const defaultState = () =>
   ({
     paneExist: false,
+    shaderSpeed: 0.35,
   } as defaultSettings)
 
 const loadSettings = () => {
@@ -16,6 +18,7 @@ const loadSettings = () => {
 
 export const useSettings = create(
   combine(loadSettings(), (set) => ({
-    setPaneExist: (paneExist: boolean) => set(() => ({ paneExist: true })),
+    setPaneExist: () => set(() => ({ paneExist: true })),
+    setShaderSpeed: (v: number) => set(() => ({ shaderSpeed: v })),
   }))
 )

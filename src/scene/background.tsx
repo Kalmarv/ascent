@@ -1,6 +1,7 @@
 import { useFrame } from '@react-three/fiber'
 import { useMemo, useRef, useState } from 'react'
 import { BackSide, BoxBufferGeometry, Vector2 } from 'three'
+import { useSettings } from '../lib/stores'
 import { BackgroundProps } from '../types/types'
 import { FlowMaterial } from './shaders/flowShader'
 import { TunnelMaterial } from './shaders/tunnelShader'
@@ -16,6 +17,7 @@ const Background = (colors: BackgroundProps) => {
   const [selectedShader, setSelectedShader] = useState<string>('flow')
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
+  const settings = useSettings()
 
   useFrame((state, delta) => {
     if (mRef.current) {
@@ -36,7 +38,7 @@ const Background = (colors: BackgroundProps) => {
             lacunarity={1.0}
             gain={0.25}
             ridges={130}
-            speed_mult={0.35}
+            speed_mult={settings.shaderSpeed}
             u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
             side={BackSide}
             ref={mRef}
@@ -48,7 +50,7 @@ const Background = (colors: BackgroundProps) => {
             col2={albumColors[1]}
             col3={albumColors[2]}
             col4={albumColors[3]}
-            speed_mult={0.35}
+            speed_mult={settings.shaderSpeed}
             glow={0}
             noise_step={11.0}
             noise_shape={1.2}
