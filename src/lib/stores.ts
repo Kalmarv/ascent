@@ -8,7 +8,7 @@ interface PaneExistence {
 
 export const usePlsStopRerendering = create<PaneExistence>((set) => ({
   paneExists: false,
-  setPaneExists: () => set({ paneExists: true }),
+  setPaneExists: (v: boolean) => set(() => ({ paneExists: v })),
 }))
 
 type defaultSettings = {
@@ -31,7 +31,7 @@ const loadSettings = () => {
 
 export const useSettings = create(
   combine(loadSettings(), (set) => ({
-    resetToDefault: () => set(defaultState()),
     setShaderSpeed: (v: number) => set(() => ({ shaderSpeed: v })),
+    resetShaderSpeed: () => set(() => ({ shaderSpeed: 0.35 })),
   }))
 )

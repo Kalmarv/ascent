@@ -18,8 +18,12 @@ const Tweakpane: React.FC = (): JSX.Element => {
 
     const resetSettings = pane.addButton({ title: 'Reset Settings' })
     resetSettings.on('click', () => {
-      settings.resetToDefault()
-      pane.refresh()
+      localStorage.clear()
+      settings.resetShaderSpeed()
+
+      // so hacky
+      pane.dispose()
+      existence.setPaneExists(false)
     })
 
     const saveSettings = pane.addButton({ title: 'Save Settings' })
