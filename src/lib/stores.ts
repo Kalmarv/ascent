@@ -12,11 +12,13 @@ export const usePlsStopRerendering = create<PaneExistence>((set) => ({
 }))
 
 type defaultSettings = {
+  backgroundShader: string
   shaderSpeed: number
 }
 
 const defaultState = () =>
   ({
+    backgroundShader: 'flow',
     shaderSpeed: 0.35,
   } as defaultSettings)
 
@@ -31,6 +33,8 @@ const loadSettings = () => {
 
 export const useSettings = create(
   combine(loadSettings(), (set) => ({
+    setBackgroundShader: (v: string) => set(() => ({ backgroundShader: v })),
+    resetBackgroundShader: () => set(() => ({ backgroundShader: 'flow' })),
     setShaderSpeed: (v: number) => set(() => ({ shaderSpeed: v })),
     resetShaderSpeed: () => set(() => ({ shaderSpeed: 0.35 })),
   }))

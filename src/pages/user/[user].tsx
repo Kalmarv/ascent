@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import useInterval from 'use-interval'
 import APIError from '../../components/apiError'
 import Loading from '../../components/loading'
-import SceneOptions from '../../components/sceneOptions'
 import { getLastFmData } from '../../lib/getLastFmData'
 import { lastFmData } from '../../types/types'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
@@ -49,7 +48,6 @@ const User = (): JSX.Element => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Scene song={lastFmData} />
-      <SceneOptions />
       <Tweakpane />
     </>
   )

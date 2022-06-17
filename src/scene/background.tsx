@@ -14,7 +14,9 @@ const Background = (colors: BackgroundProps) => {
     return filterHex
   }, [colors.colors])
 
-  const [selectedShader, setSelectedShader] = useState<string>('flow')
+  const settings = useSettings()
+  const shader = useSettings((state) => state.backgroundShader)
+
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
   const { shaderSpeed } = useSettings()
@@ -29,7 +31,7 @@ const Background = (colors: BackgroundProps) => {
     return (
       <mesh>
         <boxBufferGeometry ref={gRef} args={[10, 10, 10]} />
-        {selectedShader === 'flow' ? (
+        {shader === 'flow' ? (
           <flowMaterial
             col1={albumColors[0]}
             col2={albumColors[1]}
