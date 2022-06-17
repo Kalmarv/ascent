@@ -1,24 +1,37 @@
 import create from 'zustand'
 import { combine } from 'zustand/middleware'
 
+interface PaneExistence {
+  paneExists: boolean
+  setPaneExists: (v: boolean) => void
+}
+
+export const usePlsStopRerendering = create<PaneExistence>((set) => ({
+  paneExists: false,
+  setPaneExists: () => set({ paneExists: true }),
+}))
+
 type defaultSettings = {
-  paneExist: boolean
   shaderSpeed: number
 }
 
 const defaultState = () =>
   ({
-    paneExist: false,
     shaderSpeed: 0.35,
   } as defaultSettings)
 
 const loadSettings = () => {
+  const stored = localStorage.getItem('sceneSettings')
+  if (stored) {
+    const result = JSON.parse(stored) as Partial<defaultSettings>
+    return { ...defaultState(), ...result }
+  }
   return defaultState()
 }
 
 export const useSettings = create(
   combine(loadSettings(), (set) => ({
-    setPaneExist: () => set(() => ({ paneExist: true })),
+    resetToDefault: () => set(defaultState()),
     setShaderSpeed: (v: number) => set(() => ({ shaderSpeed: v })),
   }))
 )
