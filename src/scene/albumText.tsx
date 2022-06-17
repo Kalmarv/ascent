@@ -1,9 +1,6 @@
 import { MeshDistortMaterial, Text } from '@react-three/drei'
-import { useAtom } from 'jotai'
-import { button, useControls } from 'leva'
-import { Suspense, useEffect, useMemo } from 'react'
-import { defaultTextValues } from '../lib/constants'
-import { textOptions } from '../lib/stores'
+import { Suspense, useMemo } from 'react'
+import { useSettings } from '../lib/stores'
 import { Colors } from '../types/types'
 
 const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
@@ -18,28 +15,10 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
     return filterHex
   }, [colors])
 
-  const [savedValues, setSavedValues] = useAtom(textOptions)
-
-  const [{ distortion, textSpeed, fontSize }, setText] = useControls('Text', () => ({
-    distortion: { value: savedValues.distortion, min: 0, max: 1 },
-    textSpeed: { value: savedValues.textSpeed, min: 0, max: 5 },
-    fontSize: { value: savedValues.fontSize, min: 0, max: 1 },
-  }))
-
-  const resetButton = useControls('Reset', () => ({
-    'Reset Text': button(() => {
-      setText(defaultTextValues)
-    }),
-  }))
-
-  useEffect(() => {
-    setSavedValues({
-      ...savedValues,
-      distortion: distortion,
-      textSpeed: textSpeed,
-      fontSize: fontSize,
-    })
-  }, [distortion, textSpeed, savedValues, setSavedValues, fontSize])
+  const distortion = useSettings((state) => state.distortion)
+  const textSpeed = useSettings((state) => state.textSpeed)
+  const fontSize = useSettings((state) => state.fontSize)
+  const textCutoff = useSettings((state) => state.textCutoff)
 
   return (
     <Suspense fallback={null}>
@@ -52,7 +31,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         // @ts-ignore
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
-        maxWidth={2}
+        maxWidth={textCutoff}
         textAlign="left"
         anchorX={'left'}
       >
@@ -68,7 +47,7 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         // @ts-ignore
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
-        maxWidth={2}
+        maxWidth={textCutoff}
         textAlign="left"
         anchorX={'left'}
       >
