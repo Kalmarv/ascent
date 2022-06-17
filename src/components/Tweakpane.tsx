@@ -10,7 +10,7 @@ const Tweakpane: React.FC = (): JSX.Element => {
     existence.setPaneExists(true)
     const pane = new Pane({
       title: 'Settings',
-      expanded: true,
+      expanded: false,
     })
 
     const tab = pane.addTab({
@@ -66,7 +66,7 @@ const Tweakpane: React.FC = (): JSX.Element => {
     tunnelSettings.addInput(settings, 'shape', { label: 'Shape', min: 0, max: 2 }).on('change', (ev) => {
       settings.setShape(ev.value)
     })
-    tunnelSettings.addInput(settings, 'scale', { label: 'Speed', min: 0, max: 20 }).on('change', (ev) => {
+    tunnelSettings.addInput(settings, 'scale', { label: 'Scale', min: 0, max: 20 }).on('change', (ev) => {
       settings.setScale(ev.value)
     })
     tunnelSettings.addInput(settings, 'thickness', { label: 'Thickness', min: 0, max: 0.1 }).on('change', (ev) => {
@@ -89,6 +89,8 @@ const Tweakpane: React.FC = (): JSX.Element => {
     })
   }
 
+  // JSX component so I can use hooks without being yelled at
+  // Also to enable next.js dynamic import
   return <></>
 }
 export default Tweakpane
