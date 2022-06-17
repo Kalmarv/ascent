@@ -1,3 +1,4 @@
+import { defaultSceneSettings } from './constants'
 import create from 'zustand'
 import { combine } from 'zustand/middleware'
 
@@ -11,21 +12,27 @@ export const usePlsStopRerendering = create<PaneExistence>((set) => ({
   setPaneExists: (v: boolean) => set(() => ({ paneExists: v })),
 }))
 
-type defaultSettings = {
-  backgroundShader: string
-  shaderSpeed: number
-}
-
-const defaultState = () =>
-  ({
-    backgroundShader: 'flow',
-    shaderSpeed: 0.35,
-  } as defaultSettings)
+const defaultState = () => ({
+  backgroundShader: defaultSceneSettings.backgroundShader,
+  shaderSpeed: defaultSceneSettings.shaderSpeed,
+  distortion: defaultSceneSettings.distortion,
+  textSpeed: defaultSceneSettings.textSpeed,
+  fontSize: defaultSceneSettings.fontSize,
+  textCutoff: defaultSceneSettings.textCutoff,
+  lacunarity: defaultSceneSettings.lacunarity,
+  gain: defaultSceneSettings.gain,
+  ridges: defaultSceneSettings.ridges,
+  glow: defaultSceneSettings.glow,
+  step: defaultSceneSettings.step,
+  shape: defaultSceneSettings.shape,
+  scale: defaultSceneSettings.scale,
+  thickness: defaultSceneSettings.thickness,
+})
 
 const loadSettings = () => {
   const stored = localStorage.getItem('sceneSettings')
   if (stored) {
-    const result = JSON.parse(stored) as Partial<defaultSettings>
+    const result = JSON.parse(stored)
     return { ...defaultState(), ...result }
   }
   return defaultState()
@@ -33,9 +40,20 @@ const loadSettings = () => {
 
 export const useSettings = create(
   combine(loadSettings(), (set) => ({
+    reset: () => set(defaultState()),
     setBackgroundShader: (v: string) => set(() => ({ backgroundShader: v })),
-    resetBackgroundShader: () => set(() => ({ backgroundShader: 'flow' })),
     setShaderSpeed: (v: number) => set(() => ({ shaderSpeed: v })),
-    resetShaderSpeed: () => set(() => ({ shaderSpeed: 0.35 })),
+    setDistortion: (v: number) => set(() => ({ distortion: v })),
+    setTextSpeed: (v: number) => set(() => ({ textSpeed: v })),
+    setFontSize: (v: number) => set(() => ({ fontSize: v })),
+    setTextCutoff: (v: number) => set(() => ({ textCutoff: v })),
+    setLacunarity: (v: number) => set(() => ({ lacunarity: v })),
+    setGain: (v: number) => set(() => ({ gain: v })),
+    setRidges: (v: number) => set(() => ({ ridges: v })),
+    setGlow: (v: number) => set(() => ({ glow: v })),
+    setStep: (v: number) => set(() => ({ step: v })),
+    setShape: (v: number) => set(() => ({ shape: v })),
+    setScale: (v: number) => set(() => ({ scale: v })),
+    setThickness: (v: number) => set(() => ({ thickness: v })),
   }))
 )

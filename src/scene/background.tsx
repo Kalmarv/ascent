@@ -16,6 +16,14 @@ const Background = (colors: BackgroundProps) => {
 
   const settings = useSettings()
   const shader = useSettings((state) => state.backgroundShader)
+  const lacunarity = useSettings((state) => state.lacunarity)
+  const gain = useSettings((state) => state.gain)
+  const ridges = useSettings((state) => state.ridges)
+  const glow = useSettings((state) => state.glow)
+  const step = useSettings((state) => state.step)
+  const shape = useSettings((state) => state.shape)
+  const scale = useSettings((state) => state.scale)
+  const thickness = useSettings((state) => state.thickness)
 
   const mRef = useRef<any>()
   const gRef = useRef<BoxBufferGeometry>(null!)
@@ -37,9 +45,9 @@ const Background = (colors: BackgroundProps) => {
             col2={albumColors[1]}
             col3={albumColors[2]}
             col4={albumColors[3]}
-            lacunarity={1.0}
-            gain={0.25}
-            ridges={130}
+            lacunarity={lacunarity}
+            gain={gain}
+            ridges={ridges}
             speed_mult={shaderSpeed}
             u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
             side={BackSide}
@@ -53,11 +61,11 @@ const Background = (colors: BackgroundProps) => {
             col3={albumColors[2]}
             col4={albumColors[3]}
             speed_mult={shaderSpeed}
-            glow={0}
-            noise_step={11.0}
-            noise_shape={1.2}
-            noise_scale={1.7}
-            thickness={0.03}
+            glow={glow}
+            noise_step={step}
+            noise_shape={shape}
+            noise_scale={scale}
+            thickness={thickness}
             u_resolution={new Vector2(window.innerWidth, window.innerHeight)}
             side={BackSide}
             ref={mRef}
