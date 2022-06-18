@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@jdthornton/usefullscreen': ^1.0.1
   '@react-spring/three': ^9.4.5
   '@react-three/drei': ^9.11.3
   '@react-three/fiber': ^8.0.19
@@ -26,6 +27,7 @@ specifiers:
   zustand: 4.0.0-rc.1
 
 dependencies:
+  '@jdthornton/usefullscreen': 1.0.1
   '@react-spring/three': 9.4.5_bicakehecko3a54gcelancd6fa
   '@react-three/drei': 9.11.3_azixpxbygl53w6srcfopdavcrq
   '@react-three/fiber': 8.0.19_fozlczatik2xxzyg34dm3762um
@@ -122,6 +124,10 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@jdthornton/usefullscreen/1.0.1:
+    resolution: {integrity: sha512-1chgzDVEY7GmIQzHPxEQLPf466mxV8G07aRmB/V+zToDAifQE0CS5WiFG9tMxC+oJe4CmiRYv0KnPilsih+cFg==}
+    dev: false
 
   /@next/env/12.1.6:
     resolution: {integrity: sha512-Te/OBDXFSodPU6jlXYPAXpmZr/AkG6DCATAxttQxqOWaq6eDFX25Db3dK0120GZrSZmv4QCe9KsZmJKDbWs4OA==}

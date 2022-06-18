@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import useInterval from 'use-interval'
 import APIError from '../../components/apiError'
+import FullScreen from '../../components/Fullscreen'
 import Loading from '../../components/loading'
 import { getLastFmData } from '../../lib/getLastFmData'
 import { lastFmData } from '../../types/types'
@@ -48,6 +49,7 @@ const User = (): JSX.Element => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Scene song={lastFmData} />
+      <FullScreen />
       <Tweakpane />
     </>
   )
