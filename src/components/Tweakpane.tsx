@@ -14,26 +14,26 @@ const Tweakpane: React.FC = (): JSX.Element => {
     })
 
     const tab = pane.addTab({
-      pages: [{ title: 'Album' }, { title: 'Text' }, { title: 'Background' }],
+      pages: [{ title: 'Text' }, { title: 'Background' }],
     })
 
-    tab.pages[2].addInput(settings, 'shaderSpeed', { label: 'Speed', min: 0, max: 5 }).on('change', (ev) => {
+    tab.pages[1].addInput(settings, 'shaderSpeed', { label: 'Speed', min: 0, max: 5 }).on('change', (ev) => {
       settings.setShaderSpeed(ev.value)
     })
-    tab.pages[1].addInput(settings, 'distortion', { label: 'Distortion', min: 0, max: 1 }).on('change', (ev) => {
+    tab.pages[0].addInput(settings, 'distortion', { label: 'Distortion', min: 0, max: 1 }).on('change', (ev) => {
       settings.setDistortion(ev.value)
     })
-    tab.pages[1].addInput(settings, 'textSpeed', { label: 'Text Speed', min: 0, max: 5 }).on('change', (ev) => {
+    tab.pages[0].addInput(settings, 'textSpeed', { label: 'Text Speed', min: 0, max: 5 }).on('change', (ev) => {
       settings.setTextSpeed(ev.value)
     })
-    tab.pages[1].addInput(settings, 'fontSize', { label: 'Text Size', min: 0, max: 1 }).on('change', (ev) => {
+    tab.pages[0].addInput(settings, 'fontSize', { label: 'Text Size', min: 0, max: 1 }).on('change', (ev) => {
       settings.setFontSize(ev.value)
     })
-    tab.pages[1].addInput(settings, 'textCutoff', { label: 'Text Cutoff', min: 0, max: 10 }).on('change', (ev) => {
+    tab.pages[0].addInput(settings, 'textCutoff', { label: 'Text Cutoff', min: 0, max: 10 }).on('change', (ev) => {
       settings.setTextCutoff(ev.value)
     })
 
-    tab.pages[2]
+    tab.pages[1]
       .addInput(settings, 'backgroundShader', {
         label: 'Background',
         options: {
@@ -45,7 +45,7 @@ const Tweakpane: React.FC = (): JSX.Element => {
         settings.setBackgroundShader(ev.value)
       })
 
-    const flowSettings = tab.pages[2].addFolder({ title: 'Flow Settings', expanded: false })
+    const flowSettings = tab.pages[1].addFolder({ title: 'Flow Settings', expanded: false })
     flowSettings.addInput(settings, 'lacunarity', { label: 'Lacunarity', min: 0, max: 5 }).on('change', (ev) => {
       settings.setLacunarity(ev.value)
     })
@@ -56,7 +56,7 @@ const Tweakpane: React.FC = (): JSX.Element => {
       settings.setRidges(ev.value)
     })
 
-    const tunnelSettings = tab.pages[2].addFolder({ title: 'Tunnel Settings', expanded: false })
+    const tunnelSettings = tab.pages[1].addFolder({ title: 'Tunnel Settings', expanded: false })
     tunnelSettings.addInput(settings, 'glow', { label: 'Glow', min: 0, max: 1 }).on('change', (ev) => {
       settings.setGlow(ev.value)
     })
