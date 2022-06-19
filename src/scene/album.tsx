@@ -11,7 +11,7 @@ const Album = ({ cover, ...props }: AlbumProps) => {
   const [hovered, hover] = useState(false)
 
   const { scale } = useSpring({
-    scale: hovered ? 3 : 2,
+    scale: hovered ? 2.25 : 2,
     config: config.wobbly,
   })
 
