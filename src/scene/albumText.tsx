@@ -3,12 +3,21 @@ import { Suspense, useMemo } from 'react'
 import { useSettings } from '../lib/stores'
 import { Colors } from '../types/types'
 
-const AlbumText = ({ title, artist, colors }: { title: string; artist: string; colors: Colors[] }) => {
+const AlbumText = ({
+  title,
+  artist,
+  colors,
+}: {
+  title: string
+  artist: string
+  colors: Colors[]
+}) => {
   const albumColors = useMemo(() => {
     const filterHex = [...colors]
       .map((color) => {
         // approximate the brightness of the color and sort for good contrast
-        const brightness = (color.red + color.red + color.blue + color.green + color.green + color.green) / 6
+        const brightness =
+          (color.red + color.red + color.blue + color.green + color.green + color.green) / 6
         return { hex: color.hex, brightness: brightness }
       })
       .sort((a, b) => a.brightness - b.brightness)
@@ -37,7 +46,11 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         rotation-y={-Math.PI / 9}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[3]?.hex || '#ffffff'} />
+        <MeshDistortMaterial
+          speed={textSpeed}
+          distort={distortion}
+          color={albumColors[3]?.hex || '#ffffff'}
+        />
       </Text>
       <Text
         position={[0.013, -0.013, -0.513]}
@@ -54,7 +67,11 @@ const AlbumText = ({ title, artist, colors }: { title: string; artist: string; c
         rotation-y={-Math.PI / 9}
       >
         {`${title}\n${artist}`}
-        <MeshDistortMaterial speed={textSpeed} distort={distortion} color={albumColors[0]?.hex || '#000000'} />
+        <MeshDistortMaterial
+          speed={textSpeed}
+          distort={distortion}
+          color={albumColors[0]?.hex || '#000000'}
+        />
       </Text>
     </Suspense>
   )

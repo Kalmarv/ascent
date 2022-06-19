@@ -26,7 +26,12 @@ const Home: NextPage = (): JSX.Element => {
         <div className="form-control">
           <div className="input-group">
             <form className="" onSubmit={(event) => handleSubmit(event)}>
-              <input type="text" placeholder="Name…" name="userName" className="mt-8 input input-bordered" />
+              <input
+                type="text"
+                placeholder="Name…"
+                name="userName"
+                className="mt-8 input input-bordered"
+              />
               <button className="btn btn-square" type="submit">
                 Go
               </button>
