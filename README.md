@@ -36,9 +36,7 @@ After that you can spin up the dev server
 npm run dev
 ```
 
-## Process
-
-## Start
+## Project Info
 
 I originally built a [version](https://github.com/Kalmarv/Synify) of this site using the Spotify web api, which had users connect to the app through Spotify, but in the end Spotify denied my quota extension due to their restrictions on how album art is displayed. That’s a real shame, because I’m sure there’s way more people that would use the site if it was just Spotify, instead of [Last.fm](http://last.fm), as many more people have a Spotify account than a Last.fm account set up.
 
