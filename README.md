@@ -6,6 +6,12 @@
 
 Ascent is a site I made to display your currently playing song from Last.fm in a rendered 3d scene with custom shaders. I learned a lot through building this project about authentication, fetching data, managing state, and tying together a backend/frontend.
 
+## Demo
+
+Try it out [here](https://ascent.kalmarv.xyz/)
+
+If you don't have a Last.fm account you can check out my page at [https://ascent.kalmarv.xyz/user/kalmarv](https://ascent.kalmarv.xyz/user/kalmarv)
+
 ## Getting Started
 
 You will need Node.js and git to run this project locally
