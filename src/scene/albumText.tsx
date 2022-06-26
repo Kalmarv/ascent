@@ -36,15 +36,14 @@ const AlbumText = ({
         fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
-        font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+        font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
         // @ts-ignore
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
         maxWidth={textCutoff}
-        textAlign="left"
+        textAlign='left'
         anchorX={'left'}
-        rotation-y={-Math.PI / 9}
-      >
+        rotation-y={-Math.PI / 9}>
         {`${title}\n${artist}`}
         <MeshDistortMaterial
           speed={textSpeed}
@@ -57,15 +56,14 @@ const AlbumText = ({
         fontSize={fontSize}
         lineHeight={1.2}
         letterSpacing={0.05}
-        font="https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff"
+        font='https://fonts.gstatic.com/s/raleway/v14/1Ptrg8zYS_SKggPNwK4vaqI.woff'
         // @ts-ignore
         sdfGlyphSize={128}
         glyphGeometryDetail={64}
         maxWidth={textCutoff}
-        textAlign="left"
+        textAlign='left'
         anchorX={'left'}
-        rotation-y={-Math.PI / 9}
-      >
+        rotation-y={-Math.PI / 9}>
         {`${title}\n${artist}`}
         <MeshDistortMaterial
           speed={textSpeed}

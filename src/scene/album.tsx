@@ -26,8 +26,7 @@ const Album = ({ cover, ...props }: AlbumProps) => {
           onPointerOver={(event) => hover(true)}
           onPointerOut={(event) => hover(false)}
           position={[-1.5, 0, 0]}
-          rotation-y={Math.PI / 9}
-        >
+          rotation-y={Math.PI / 9}>
           <planeBufferGeometry />
           <meshStandardMaterial map={albumCover} />
         </animated.mesh>
@@ -39,10 +38,9 @@ const Album = ({ cover, ...props }: AlbumProps) => {
           scale-x={scale}
           scale-y={scale}
           scale-z={0.025}
-          rotation-y={Math.PI / 9}
-        >
+          rotation-y={Math.PI / 9}>
           <boxBufferGeometry />
-          <meshBasicMaterial color="#121212" />
+          <meshBasicMaterial color='#121212' />
         </animated.mesh>
       </Float>
     </>

@@ -55,5 +55,5 @@ export const useSettings = create(
     setGain: (v: number) => set(() => ({ gain: v })),
     setGlow: (v: number) => set(() => ({ glow: v })),
     setStep: (v: number) => set(() => ({ step: v })),
-  }))
+  })),
 )

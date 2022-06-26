@@ -136,7 +136,7 @@ void main() {
   // finalColor = vec3(glow + circle);
   gl_FragColor = vec4(finalColor, 1.0);
 }
-  `
+  `,
 )
 
 extend({ TunnelMaterial })
