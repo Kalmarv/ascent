@@ -6,6 +6,7 @@ import useInterval from 'use-interval'
 import APIError from '../../components/apiError'
 import FullScreen from '../../components/Fullscreen'
 import Loading from '../../components/loading'
+import PageHead from '../../components/pageHead'
 import { getLastFmData } from '../../lib/getLastFmData'
 import { lastFmData } from '../../types/types'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
@@ -44,10 +45,7 @@ const User = (): JSX.Element => {
 
   return (
     <>
-      <Head>
-        <title>Ascent - {user}</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
+      <PageHead title={`Ascent - ${user}`} />
       <Scene song={lastFmData} />
       <FullScreen />
       <Tweakpane />

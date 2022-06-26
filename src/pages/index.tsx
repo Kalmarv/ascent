@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import PageHead from '../components/pageHead'
 
 const Home: NextPage = (): JSX.Element => {
   const router = useRouter()
@@ -17,10 +18,7 @@ const Home: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <Head>
-        <title>Ascent</title>
-        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      </Head>
+      <PageHead />
       <h1 className='font-bold text-5xl text-center mt-20'>{"What's your Last.fm UserName?"}</h1>
       <div className='grid place-items-center'>
         <div className='form-control'>
