@@ -24,7 +24,7 @@ const PageHead: React.FC<{ title?: string }> = ({ title }): JSX.Element => {
       <meta property='og:title' content='Ascent' />
       <meta property='og:image' content='/ascent-social.png' />
       <meta property='og:description' content='Song display for Last.fm' />
-      <meta property='og:site_name' content='8Bit Code' />
+      <meta property='og:site_name' content='Ascent' />
       <meta itemProp='name' content='Ascent' />
       <meta itemProp='description' content='Song display for Last.fm.' />
       <meta itemProp='image' content='/ascent-social.png' />
