@@ -5,6 +5,11 @@ const PageHead: React.FC<{ title?: string }> = ({ title }): JSX.Element => {
     <Head>
       <title>{title ?? 'Ascent'}</title>
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+      <link rel='preconnect' href='https://fonts.googleapis.com' />
+      <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
+      {/* eslint@next/next/no-page-custom-font - I'm only using it on this page so... */}
+      {/* eslint-disable-next-line */}
+      <link href='https://fonts.googleapis.com/css2?family=Manrope&display=swap' rel='stylesheet' />
       <link rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png' />
       <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
       <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />

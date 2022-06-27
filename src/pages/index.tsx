@@ -23,7 +23,7 @@ const Home: NextPage = (): JSX.Element => {
     <>
       <PageHead />
       <div className='mx-16 my-16'>
-        <SiteLogo className='fill-primary drop-shadow-lg' />
+        <SiteLogo />
         <h1 className='font-bold text-3xl mt-8 text-primary drop-shadow-md'>
           {"What's your Last.fm UserName?"}
         </h1>

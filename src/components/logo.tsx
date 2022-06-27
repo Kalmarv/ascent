@@ -1,6 +1,11 @@
-const SiteLogo = ({ ...props }): JSX.Element => {
+import { FC } from 'react'
+
+const SiteLogo = (): JSX.Element => {
   return (
-    <svg width='400' height='150' xmlns='http://www.w3.org/2000/svg' {...props}>
+    <svg
+      viewBox='0 0 400 150'
+      xmlns='http://www.w3.org/2000/svg'
+      className='fill-primary drop-shadow-lg max-w-md'>
       <g>
         <title>Layer 1</title>
         <path
