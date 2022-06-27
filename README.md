@@ -1,12 +1,14 @@
 <h1 align="center" id="title">Ascent</h1>
 
-<p align="center"><img src="https://i.imgur.com/gJY1VJu.jpg" alt="project-image"></p>
+<p align="center"><img width="250px" src="https://i.imgur.com/p12qN1A.png" alt="project-image"></p>
 
 <h2 id="description" align="center">Dynamic 3D display for your currently playing song on Last.fm</h2>
 
 Ascent is a site I made to display your currently playing song from Last.fm in a rendered 3d scene with custom shaders. I learned a lot through building this project about authentication, fetching data, managing state, and tying together a backend/frontend.
 
 ## Demo
+
+<p align="center"><img src="https://i.imgur.com/gJY1VJu.jpg" alt="project-image"></p>
 
 Try it out [here](https://ascent.kalmarv.xyz/)
 
