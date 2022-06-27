@@ -16,18 +16,18 @@ const PageHead: React.FC<{ title?: string }> = ({ title }): JSX.Element => {
       <meta name='author' content='Kalmarv' />
       <meta name='description' content='Song display for Last.fm' />
       <link rel='canonical' href='https://ascent.kalmarv.xyz/' />
-      <meta name='twitter:card' content='/ascent-social.png' />
+      <meta name='twitter:card' content='https://ascent.kalmarv.xyz/ascent-social.png' />
       <meta name='twitter:title' content='Ascent' />
       <meta name='twitter:description' content='Song display for Last.fm' />
-      <meta name='twitter:image:src' content='/ascent-social.png' />
+      <meta name='twitter:image:src' content='https://ascent.kalmarv.xyz/ascent-social.png' />
       <meta property='og:url' content='https://ascent.kalmarv.xyz/' />
       <meta property='og:title' content='Ascent' />
-      <meta property='og:image' content='/ascent-social.png' />
+      <meta property='og:image' content='https://ascent.kalmarv.xyz/ascent-social.png' />
       <meta property='og:description' content='Song display for Last.fm' />
       <meta property='og:site_name' content='Ascent' />
       <meta itemProp='name' content='Ascent' />
       <meta itemProp='description' content='Song display for Last.fm.' />
-      <meta itemProp='image' content='/ascent-social.png' />
+      <meta itemProp='image' content='https://ascent.kalmarv.xyz/ascent-social.png' />
     </Head>
   )
 }
