@@ -33,6 +33,11 @@ const PageHead: React.FC<{ title?: string }> = ({ title }): JSX.Element => {
       <meta itemProp='name' content='Ascent' />
       <meta itemProp='description' content='Song display for Last.fm.' />
       <meta itemProp='image' content='https://ascent.kalmarv.xyz/ascent-social.png' />
+      <script
+        async
+        defer
+        data-website-id='e1e098b3-ec57-474b-8721-84e66d37e650'
+        src='https://umami-production-84c6.up.railway.app/umami.js'></script>
     </Head>
   )
 }
