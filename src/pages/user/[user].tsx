@@ -1,12 +1,11 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import useInterval from 'use-interval'
 import APIError from '../../components/apiError'
 import FullScreen from '../../components/Fullscreen'
 import Loading from '../../components/loading'
-import PageHead from '../../components/pageHead'
 import { getLastFmData } from '../../lib/getLastFmData'
 import { lastFmData } from '../../types/types'
 const Scene = dynamic(() => import('../../scene/scene'), { ssr: false, loading: () => <Loading /> })
@@ -35,20 +34,19 @@ const User = (): JSX.Element => {
     getUserPlaying()
   }, 5000)
 
-  if (error) {
-    return <APIError message={error} />
-  }
-
   if (!lastFmData) {
     return <Loading />
   }
 
   return (
     <>
-      <PageHead title={`Ascent - ${user}`} />
+      <Head>
+        <title>Ascent - {user}</title>
+      </Head>
       <Scene song={lastFmData} />
       <FullScreen />
       <Tweakpane />
+      {error && <APIError message={error} />}
     </>
   )
 }
